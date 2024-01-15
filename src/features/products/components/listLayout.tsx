@@ -25,3 +25,18 @@ export const ListLayout = () => {
     </div>
   );
 };
+        fetchData();
+    }, []);
+    //hehe
+    return(
+        <div>
+            <h1>hehe</h1>
+           <div>
+            {data.map((product, index) => (
+                <p key={index}>{product.productName}</p>
+            ))}
+        </div>
+        </div>
+      
+    );
+}
