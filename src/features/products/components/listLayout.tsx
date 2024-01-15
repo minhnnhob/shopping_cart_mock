@@ -22,6 +22,8 @@ export const ListLayout = () => {
             <div>
               <p key={index}>{product.productName}</p>
               <img src="https://picsum.photos/200/300" alt="" />
+              
+              <p key={index}>{product.description}</p>
               <p key={index}>{product.description}</p>
               <p key={index}>{product.description}</p>
               <h1>hehe</h1>
