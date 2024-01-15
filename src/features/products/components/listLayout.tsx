@@ -20,6 +20,7 @@ export const ListLayout = () => {
           {data.map((product, index) => (
             <div>
               <p key={index}>{product.productName}</p>
+              <img src="https://picsum.photos/200/300" alt="" />
               <p key={index}>{product.description}</p>
             </div>
           ))}
