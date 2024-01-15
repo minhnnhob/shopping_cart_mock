@@ -22,6 +22,7 @@ export const ListLayout = () => {
             <div>
               <p key={index}>{product.productName}</p>
               <p key={index}>{product.description}</p>
+              <p key={index}>{product.description}</p>
               <h1>hehe</h1>
               <img src={img} alt="" />
             </div>
