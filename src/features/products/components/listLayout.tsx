@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { GetAllProduct } from "../api/getAllProduct";
 import { Product } from "../interface/interface";
-import NavBar from "../../../components/NavBar";
+import img from "./logo192.png";
+
 
 export const ListLayout = () => {
   const [data, setData] = useState<Product[]>([]);
@@ -22,6 +23,9 @@ export const ListLayout = () => {
               <p key={index}>{product.productName}</p>
               <img src="https://picsum.photos/200/300" alt="" />
               <p key={index}>{product.description}</p>
+              <p key={index}>{product.description}</p>
+              <h1>hehe</h1>
+              <img src={img} alt="" />
             </div>
           ))}
         </div>
