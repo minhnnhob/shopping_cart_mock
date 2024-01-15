@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 
 export const AppRoutes: React.FC = () => {
   const commonRoutes = [{ path: "/", element: <ListLayout /> }];
-  const Home = [{ path: "/home", element: <ListLayout /> }];
+  const Products = [{ path: "/products", element: <ListLayout /> }];
 
   return (
     <>
@@ -14,7 +14,7 @@ export const AppRoutes: React.FC = () => {
           {commonRoutes.map((route, index) => (
             <Route key={index} path={route.path} element={route.element} />
           ))}
-          <Route path="/home" element={<ListLayout />} />
+          <Route path="/products" element={<ListLayout />} />
         </Routes>
       </div>
     </>
