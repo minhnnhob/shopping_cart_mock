@@ -14,7 +14,6 @@ export const ListLayout = () => {
         setSelectedProduct(result[0]); // Set the first product as the selected product
       }
     };
-   
 
     fetchData();
   }, []);
