@@ -35,6 +35,7 @@ export const ListLayout = () => {
           <h2 style={{ marginTop: "40px", marginLeft:"80px" }}>{selectedProduct.productName}</h2>
           <p style={{ marginTop: "40px", marginLeft:"80px" }}>{selectedProduct.description}</p>
           {/* Add more details as needed */}
+           {/* Add more details as needed */}
         </div>
       )}
 
