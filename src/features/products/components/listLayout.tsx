@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { GetAllProduct } from "../api/getAllProduct";
 import { Product } from "../interface/interface";
-import img from "./logo192.png";
+
 
 
 export const ListLayout = () => {
@@ -25,7 +25,7 @@ export const ListLayout = () => {
               <p key={index}>{product.description}</p>
               <p key={index}>{product.description}</p>
               <h1>hehe</h1>
-              <img src={img} alt="" />
+              
             </div>
           ))}
         </div>
