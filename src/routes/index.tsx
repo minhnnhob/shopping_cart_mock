@@ -14,7 +14,7 @@ export const AppRoutes: React.FC = () => {
           {commonRoutes.map((route, index) => (
             <Route key={index} path={route.path} element={route.element} />
           ))}
-          <Route path="/home" element={<ListLayout />} />
+          <Route path="/products" element={<ListLayout />} />
         </Routes>
       </div>
     </>
