@@ -24,23 +24,3 @@ export const ListLayout = () => {
       
     );
 }
-
-// import React, { useEffect, useState } from 'react';
-// import { GetAllProduct } from "../api/getAllProduct";
-
-// export const ListLayout = () => {
-//     const [data, setData] = useState<Product[]>([]);
-
-//     useEffect(() => {
-//         const fetchData = async () => {
-//             const result = await GetAllProduct();
-//             setData(result);
-//         };
-
-//         fetchData();
-//     }, []);
-
-//     return (
-//         <p>{data}</p>
-//     );
-// }
