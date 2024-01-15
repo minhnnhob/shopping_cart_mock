@@ -5,7 +5,7 @@ import { Product } from "../interface/interface";
 export const ListLayout = () => {
   const [data, setData] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-
+//hehe
   useEffect(() => {
     const fetchData = async () => {
       const result = await GetAllProduct();
@@ -14,6 +14,7 @@ export const ListLayout = () => {
         setSelectedProduct(result[0]); // Set the first product as the selected product
       }
     };
+   
 
     fetchData();
   }, []);
