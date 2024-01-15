@@ -5,7 +5,7 @@ import NavBar from "../components/NavBar";
 export const AppRoutes: React.FC = () => {
   const commonRoutes = [{ path: "/", element: <ListLayout /> }];
   const Home = [{ path: "/home", element: <ListLayout /> }];
-
+//hehe
   return (
     <>
       <NavBar />
