@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { GetAllProduct, Product } from "../api/getAllProduct";
+import { GetAllProduct } from "../api/getAllProduct";
+import { Product } from "../interface/interface";
+import NavBar from "../../../components/NavBar";
 
 export const ListLayout = () => {
   const [data, setData] = useState<Product[]>([]);
@@ -12,19 +14,17 @@ export const ListLayout = () => {
     fetchData();
   }, []);
   return (
-    <div>
-      <h1>hehe</h1>
+    <>
       <div>
-        {data.map((product, index) => (
-          <div>
-            <p key={index}>{product.productName}</p>
-            <p key={index}>{product.productName}</p>
-            <p key={index}>{product.productName}</p>
-            <p key={index}>{product.productName}</p>
-            <p key={index}>{product.productName}</p>
-          </div>
-        ))}
+        <div>
+          {data.map((product, index) => (
+            <div>
+              <p key={index}>{product.productName}</p>
+              <p key={index}>{product.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
