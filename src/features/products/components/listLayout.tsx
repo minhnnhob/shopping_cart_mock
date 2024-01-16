@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GetAllProduct } from "../api/getAllProduct";
 import { Product } from "../interface/interface";
+import { QuantityButton } from './QuantityButton';
 
 
 
@@ -8,6 +9,7 @@ export const ListLayout = () => {
   const [data, setData] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,29 +17,23 @@ export const ListLayout = () => {
       setData(result);
       if (result && result.length > 0) {
         setSelectedProduct(result[0]);
+        setTotalPrice(Number(result[0].price));
       }
     };
 
     fetchData();
   }, []);
+  useEffect(() => {
+    if (selectedProduct) {
+      setTotalPrice(Number(selectedProduct.price) * quantity);
+    }
+  }, [quantity, selectedProduct]);
+
 
   const handleDetailClick = (product: Product) => {
     setSelectedProduct(product);
   };
 
-  const handleQuantityChange = (newQuantity: number) => {
-    setQuantity(newQuantity);
-  };
-
-  const handleIncrement = () => {
-    handleQuantityChange(quantity + 1);
-  };
-
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      handleQuantityChange(quantity - 1);
-    }
-  };
 
   const handleAddToCart = () => {
     console.log(`Added ${quantity} ${selectedProduct?.productName}(s) to the cart.`);
@@ -60,22 +56,19 @@ export const ListLayout = () => {
           <div style={{ marginLeft: "20px" }}>
             <h2>{selectedProduct.productName}</h2>
             <p>{selectedProduct.description}</p>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <label htmlFor="quantity" style={{ marginRight: "10px" }}></label>
-              <button onClick={handleDecrement} disabled={quantity === 1}>-</button>
-              <span style={{ margin: "0 10px" }}>{quantity}</span>
-              <button onClick={handleIncrement}>+</button>
-              <p style={{ marginLeft: "850px", fontWeight: "bold" }}>
-                ${selectedProduct.price}
+
+            <div style={{ display: "flex", alignItems: "center", position: "fixed" }}>
+              <label htmlFor="quantity" style={{ marginRight: "10px", position: "fixed" }}></label>
+              <QuantityButton quantity={quantity} setQuantity={setQuantity} />
+              <p style={{ marginLeft: "650px", fontWeight: "bold", position: "fixed" }}>
+                ${totalPrice}
               </p>
               <button
                 onClick={handleAddToCart}
-                style={{ backgroundColor: " #3B82F6", color: "#fff", padding: "8px 12px", border: "none", cursor: "pointer", marginLeft: "100px", borderRadius:"10px" }}
+                style={{ backgroundColor: " #3B82F6", color: "#fff", padding: "8px 12px", border: "none", cursor: "pointer", marginLeft: "750px", borderRadius: "10px", position: "fixed" }}
               >
-Add to Cart
+                Add to Cart
               </button>
-             
-      
             </div>
           </div>
         </div>
@@ -127,7 +120,9 @@ Add to Cart
                 style={{
                   padding: "5px 8px",
                   cursor: "pointer",
-                  marginLeft: "600px"
+                  marginLeft: "40px",
+                  color: "blue",
+
                 }}
               >
                 Detail
