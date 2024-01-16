@@ -1,22 +1,162 @@
+// ListLayout.tsx
+
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import { GetAllProduct } from "../api/getAllProduct";
 import { Product } from "../interface/interface";
-import { Button } from 'react-bootstrap';
-import { QuantityButton } from "../../../components/Element/Button/Button";
 
-export const ListLayout = () => {
+
+// Styled components
+const ListLayoutWrapper = styled.div`
+  display: flex;
+  background-color: #e5e7eb;
+  height: 800px;
+`;
+
+const Container = styled.div`
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  margin: 20px;
+  
+`;
+
+const SelectedProductContainer = styled(Container)`
+  width: 63%;
+  margin-left: 5%;
+  max-height: 600px;
+  overflow: auto;
+`;
+
+const ProductImage = styled.img`
+width: 40%;
+height: 60%;
+margin-top: 50px;
+margin-left: 35%;
+display: flex;
+align-items: center;
+justify-content: center;
+`;
+
+const ProductDetailsContainer = styled.div`
+  margin-left: 20px;
+  
+`;
+
+const PriceCartSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+`;
+
+const QuantitySection = styled.div`
+  display: flex;
+  align-items: center;
+
+  button {
+    margin-right: 5px;
+  }
+`;
+
+const TotalPrice = styled.p`
+  font-weight: bold;
+`;
+
+const AddToCartButton = styled.button`
+  background-color: #3b82f6;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+`;
+
+const ProductListContainer = styled(Container)`
+  width: 40%;
+  margin-right: 5%;
+  overflow: auto;
+  background-color: #E5E7EB;
+  margin-top:1px;
+  
+`;
+
+const ProductItem = styled.div`
+  margin-bottom: 10px;
+  border: 1px solid #ddd; // Changed to a light grey color for visibility
+  background-color: white; // Slightly different background color for contrast
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+`;
+
+
+const ListImage = styled.img`
+  width: 120px;
+  height: 80px;
+  margin-right: 10px;
+`;
+
+const ProductInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-right: 10px;
+`;
+
+const ProductName = styled.p`
+  margin: 0;
+  font-size: 15px;
+  font-weight: bold;
+`;
+
+const ProductDescription = styled.p`
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 13px;
+`;
+
+const PriceDetailSection = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ProductPrice = styled.p`
+  margin: 0;
+  margin-right: 20px;
+  font-weight: bold;
+`;
+
+const DetailButton = styled.button`
+  background-color: white;
+  color: #3b82f6;
+  padding: 5px 8px;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+`;
+
+// Main component
+const ListLayout = () => {
   const [data, setData] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
+
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await GetAllProduct();
-      setData(result);
-      if (result && result.length > 0) {
-        setSelectedProduct(result[0]);
-        setTotalPrice(Number(result[0].price));
+      try {
+        const result = await GetAllProduct();
+        setData(result);
+        if (result && result.length > 0) {
+          setSelectedProduct(result[0]);
+          setTotalPrice(Number(result[0].price));
+        }
+      } catch (error) {
+        console.error("Error fetching product data:", error);
+        // Handle error gracefully, e.g., show a message to the user
       }
     };
 
@@ -31,121 +171,65 @@ export const ListLayout = () => {
 
   const handleDetailClick = (product: Product) => {
     setSelectedProduct(product);
+    setQuantity(1);
   };
 
   const handleAddToCart = () => {
-    console.log(`Added ${quantity} ${selectedProduct?.productName}(s) to the cart.`);
-    // Implement the logic to add the selected product with the chosen quantity to the cart
-    // You can use a state management solution like Redux or Context API for managing the cart state
-    // For simplicity, you can log the details to the console for now.
+    if (selectedProduct) {
+      console.log(`Added ${quantity} ${selectedProduct.productName}(s) to the cart.`);
+      // Add to cart logic here
+    }
   };
 
   return (
-    <div style={{ display: "flex", backgroundColor: "#E5E7EB", height: "700px" }}>
+    <ListLayoutWrapper>
       {selectedProduct && (
-        <div style={{
-          width: "63%",
-          padding: "20px",
-          background: "white",
-          borderRadius: "8px",
-          margin: "20px",
-          marginLeft: "5%",
-          maxHeight: "600px", // Set a maximum height
-        }}>
-          <div>
-            <img
-              src="https://picsum.photos/200/300"
-              alt=""
-              style={{ width: "30%", height: "40%", marginTop: "50px", marginLeft: "40%" }}
-            />
-          </div>
-          <div style={{ marginLeft: "20px" }}>
+        <SelectedProductContainer>
+          <ProductImage
+            src={"https://picsum.photos/200/300"}
+            alt={selectedProduct.productName}
+          />
+          <ProductDetailsContainer>
             <h2>{selectedProduct.productName}</h2>
             <p>{selectedProduct.description}</p>
+            <PriceCartSection>
+              <QuantitySection>
+                <button onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)} disabled={quantity <= 1}>-</button>
+                <span>{quantity}</span>
+                <button onClick={() => setQuantity(quantity + 1)}>+</button>
+              </QuantitySection>
+              <div style={{display:"flex", justifyContent:"space-between"}}>
+              <TotalPrice style={{marginRight:"1rem"}}>${totalPrice.toFixed(2)}</TotalPrice>
+              <AddToCartButton onClick={handleAddToCart}>Add to Cart</AddToCartButton>
 
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "20px" }}>
-              {/* Quantity Buttons and Quantity Display */}
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <button onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)} disabled={quantity <= 1} style={{ marginRight: "5px" }}>-</button>
-                <span style={{ margin: "0 5px" }}>{quantity}</span>
-                <button onClick={() => setQuantity(quantity + 1)} style={{ marginLeft: "5px" }}>+</button>
               </div>
 
-              {/* Total Price */}
-              <p style={{ fontWeight: "bold" }}>
-                ${totalPrice}
-              </p>
+            </PriceCartSection>
+          </ProductDetailsContainer>
+        </SelectedProductContainer>
 
-              <Button variant="primary " onClick={handleAddToCart}
-                style={{ backgroundColor: " #3B82F6", color: "#fff", padding: "8px 12px", border: "none", cursor: "pointer", marginLeft: "750px", borderRadius: "8px", position: "fixed" }}>  Add to Cart</Button>
-
-
-            </div>
-          </div>
-        </div>
       )}
 
-      <div style={{
-        width: "40%",
-        padding: "20px",
-        marginRight: "5%",
-        
-        
-        
-        
-      }}>
+      <ProductListContainer>
         {data.map((product, index) => (
-          <div
-            key={index}
-            style={{
-              marginBottom: "10px",
-              border: "1px solid white",
-              backgroundColor: "white",
-              borderRadius: "8px",
-              padding: "10px",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <img
-              src="https://picsum.photos/200/300"
-              alt=""
-              style={{ width: "120px", height: "80px", marginRight: "10px" }}
+          <ProductItem key={index}>
+            <ListImage
+              src={ "https://picsum.photos/200/300"}
+              alt={product.productName}
             />
-            <div style={{
-              display: "flex",
-              flexDirection: "column",
-              flex: 1,
-              marginRight: "10px" // Added to prevent text from touching the Detail button
-            }}>
-              <p style={{ margin: "0", fontSize: "15px", fontWeight: "bold" }}>
-                {product.productName}
-              </p>
-              <p style={{ margin: "0", marginBottom: "10px", fontSize:"13px" }}>
-                {product.description}
-              </p>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <p style={{ margin: "0", marginRight: "20px", fontWeight: "bold" }}>
-                  ${product.price}
-                </p>
-                <button
-                  onClick={() => handleDetailClick(product)}
-                  style={{
-                    backgroundColor: "white",
-                    color: "#3B82F6",
-                    padding: "5px 8px",
-                    border: "none",
-                    cursor: "pointer",
-                    marginLeft: "auto", // Changed to auto to push the button to the far right
-                  }}
-                >
-                  Detail
-                </button>
-              </div>
-            </div>
-          </div>
+            <ProductInfo>
+              <ProductName>{product.productName}</ProductName>
+              <ProductDescription>{product.description}</ProductDescription>
+              <PriceDetailSection>
+                <ProductPrice>${product.price}</ProductPrice>
+                <DetailButton onClick={() => handleDetailClick(product)}>Detail</DetailButton>
+              </PriceDetailSection>
+            </ProductInfo>
+          </ProductItem>
         ))}
-      </div>
-    </div>
+      </ProductListContainer>
+    </ListLayoutWrapper>
   );
 };
+
+export default ListLayout;

@@ -1,6 +1,7 @@
 
 import { NavLink } from "react-router-dom";
 
+
 const NavBar: React.FC = () => {
   const style = ({ isActive }: { isActive: boolean }) => {
     return {
