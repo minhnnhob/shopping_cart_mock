@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { GetAllProduct } from "../api/getAllProduct";
 import { Product } from "../interface/interface";
 
+
 // Styled components
 const ListLayoutWrapper = styled.div`
   display: flex;
@@ -202,9 +203,11 @@ const ListLayout = () => {
               <AddToCartButton onClick={handleAddToCart}>Add to Cart</AddToCartButton>
 
               </div>
+
             </PriceCartSection>
           </ProductDetailsContainer>
         </SelectedProductContainer>
+
       )}
 
       <ProductListContainer>

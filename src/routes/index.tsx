@@ -3,9 +3,9 @@ import { Route, Routes } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import ListLayout from "../features/products/components/listLayout";
 
-import ShoppingCart from "../features/products/components/ShoppingCart";
+import { ShoppingCart } from "../features/cart/routes";
 
-import Home from "../features/products/components/Home";
+import Home from "../features/home/components/Home";
 
 export const AppRoutes: React.FC = () => {
   const commonRoutes = [{ path: "/", element: <ListLayout /> }];
