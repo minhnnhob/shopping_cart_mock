@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import { ListLayout } from "../features/products/components/listLayout";
+
 import NavBar from "../components/NavBar";
+import ListLayout from "../features/products/components/listLayout";
 
 import ShoppingCart from "../features/products/components/ShoppingCart";
 
