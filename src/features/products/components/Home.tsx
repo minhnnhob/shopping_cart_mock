@@ -1,15 +1,13 @@
-import React from "react";
+import React from 'react';
+
 
 const Home: React.FC = () => {
-    return (
-        <div style={{ textAlign: "right", marginRight:"200px", backgroundColor: "#E5E7EB" }}>
-            <img
-            src={require("../../../assets/comming-soon.png")}
-            alt=""
-            style={{ width: "30%", height: "40%" }}
-        />
-        </div>
-    );
+  return (
+    <div  style={{ textAlign: 'right', maxWidth: '100%', overflow: 'hidden' }}>
+
+     <img src={require("../../../assets/comming-soon.png")} alt=""   style={{ maxWidth: '100%', height: 'auto' }} />
+    </div>
+  );
 };
 
 export default Home;
