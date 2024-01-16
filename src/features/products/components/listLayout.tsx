@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { GetAllProduct } from "../api/getAllProduct";
 import { Product } from "../interface/interface";
 import { Button } from 'react-bootstrap';
-import { QuantityButton } from "../../../components/Element/Button/Button";
+
 
 export const ListLayout = () => {
   const [data, setData] = useState<Product[]>([]);
@@ -50,7 +50,7 @@ export const ListLayout = () => {
           borderRadius: "8px",
           margin: "20px",
           marginLeft: "5%",
-          maxHeight: "600px", // Set a maximum height
+          maxHeight: "600px", 
         }}>
           <div>
             <img
@@ -59,28 +59,31 @@ export const ListLayout = () => {
               style={{ width: "30%", height: "40%", marginTop: "50px", marginLeft: "40%" }}
             />
           </div>
-          <div style={{ marginLeft: "20px" }}>
+          <div style={{ display: "flex", flexDirection: "column", marginLeft: "20px" }}>
             <h2>{selectedProduct.productName}</h2>
             <p>{selectedProduct.description}</p>
 
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "20px" }}>
               {/* Quantity Buttons and Quantity Display */}
               <div style={{ display: "flex", alignItems: "center" }}>
-                <button onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)} disabled={quantity <= 1} style={{ marginRight: "5px" }}>-</button>
+                <Button onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)} disabled={quantity <= 1} style={{ marginRight: "5px" }}>-</Button>
                 <span style={{ margin: "0 5px" }}>{quantity}</span>
-                <button onClick={() => setQuantity(quantity + 1)} style={{ marginLeft: "5px" }}>+</button>
+                <Button onClick={() => setQuantity(quantity + 1)} style={{ marginLeft: "5px" }}>+</Button>
               </div>
 
-              {/* Total Price */}
-              <p style={{ fontWeight: "bold" }}>
-                ${totalPrice}
-              </p>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <p style={{ fontWeight: "bold" }}>
+                  ${totalPrice}
+                </p>
 
-              <Button variant="primary " onClick={handleAddToCart}
-                style={{ backgroundColor: " #3B82F6", color: "#fff", padding: "8px 12px", border: "none", cursor: "pointer", marginLeft: "750px", borderRadius: "8px", position: "fixed" }}>  Add to Cart</Button>
+                <Button variant="primary " onClick={handleAddToCart}
+                  style={{ backgroundColor: " #3B82F6", color: "#fff", padding: "8px 12px", border: "none", cursor: "pointer", marginLeft: "750px", borderRadius: "8px", position: "fixed" }}>  Add to Cart</Button>
 
+
+              </div>
 
             </div>
+
           </div>
         </div>
       )}
@@ -89,10 +92,10 @@ export const ListLayout = () => {
         width: "40%",
         padding: "20px",
         marginRight: "5%",
-        
-        
-        
-        
+
+
+
+
       }}>
         {data.map((product, index) => (
           <div
@@ -121,7 +124,7 @@ export const ListLayout = () => {
               <p style={{ margin: "0", fontSize: "15px", fontWeight: "bold" }}>
                 {product.productName}
               </p>
-              <p style={{ margin: "0", marginBottom: "10px", fontSize:"13px" }}>
+              <p style={{ margin: "0", marginBottom: "10px", fontSize: "13px" }}>
                 {product.description}
               </p>
               <div style={{ display: "flex", alignItems: "center" }}>
