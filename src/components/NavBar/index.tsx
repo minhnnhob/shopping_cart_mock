@@ -1,4 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { NavLink } from "react-router-dom";
 
 const NavBar: React.FC = () => {
@@ -40,9 +40,12 @@ const NavBar: React.FC = () => {
       </div>
 
       <div className="logo" style={{fontWeight:"800",fontSize:"1.5rem", color:"#3B82F6"}}>Beauty.bd</div>
+      
+      <NavLink to="/cart" style={{ textDecoration: "none" }}>
       <div className="cartIcon" style={{ marginRight: "2rem",}}>
         <i className="ri-shopping-cart-2-fill " style={{color:"#3B82F6", fontSize:"2rem"}}></i>
       </div>
+      </NavLink>
     </div>
   );
 };
