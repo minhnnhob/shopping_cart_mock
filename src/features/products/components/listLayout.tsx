@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { GetAllProduct } from "../api/getAllProduct";
 import { Product } from "../interface/interface";
-import { QuantityButton } from './QuantityButton';
+import { Button } from 'react-bootstrap';
+import { QuantityButton } from "../../../components/Element/Button/Button";
 
 
 
@@ -64,15 +65,8 @@ export const ListLayout = () => {
               <p style={{ marginLeft: "650px", fontWeight: "bold", position: "fixed" }}>
                 ${totalPrice}
               </p>
-              <button
-                onClick={handleAddToCart}
-                style={{ backgroundColor: " #3B82F6", color: "#fff", padding: "8px 12px", border: "none", cursor: "pointer", marginLeft: "750px", borderRadius: "10px", position: "fixed" }}
-              >
-                Add to Cart
-              </button>
-             
-      
-
+              <Button variant="primary " onClick={handleAddToCart}
+                style={{ backgroundColor: " #3B82F6", color: "#fff", padding: "8px 12px", border: "none", cursor: "pointer", marginLeft: "750px", borderRadius: "8px", position: "fixed" }}>  Add to Cart</Button>
 
             </div>
           </div>
