@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
-import ShoppingCart from "./features/products/components/ShoppingCart"; 
+
 
 
 test('renders learn react link', () => {
@@ -14,4 +14,3 @@ test('renders learn react link', () => {
 });
 
 
-<ShoppingCart />

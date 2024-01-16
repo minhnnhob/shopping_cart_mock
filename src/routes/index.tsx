@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { ListLayout } from "../features/products/components/listLayout";
 import NavBar from "../components/NavBar";
 
-import ShoppingCart from "../features/products/components/ShoppingCart";
+import { ShoppingCart } from "../features/cart/routes";
 
 import Home from "../features/home/components/Home";
 
