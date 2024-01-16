@@ -29,11 +29,9 @@ export const ListLayout = () => {
     }
   }, [quantity, selectedProduct]);
 
-
   const handleDetailClick = (product: Product) => {
     setSelectedProduct(product);
   };
-
 
   const handleAddToCart = () => {
     console.log(`Added ${quantity} ${selectedProduct?.productName}(s) to the cart.`);

@@ -19,7 +19,7 @@ const NavBar: React.FC = () => {
           width: "20%",
           justifyContent: "space-between",
           marginLeft: "2rem",
-         
+        
         }}
       >
         <div>
