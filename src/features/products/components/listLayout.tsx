@@ -43,6 +43,7 @@ export const ListLayout = () => {
   };
 
   return (
+
     <div style={{ display: "flex", backgroundColor: "white" }}>
       {selectedProduct && (
         <div style={{ width: "60%", padding: "20px", float: "left" }}>
@@ -69,6 +70,9 @@ export const ListLayout = () => {
               >
                 Add to Cart
               </button>
+             
+      
+
             </div>
           </div>
         </div>
