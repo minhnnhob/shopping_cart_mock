@@ -3,8 +3,6 @@ import { GetAllProduct } from "../api/getAllProduct";
 import { Product } from "../interface/interface";
 import { QuantityButton } from './QuantityButton';
 
-
-
 export const ListLayout = () => {
   const [data, setData] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -23,6 +21,7 @@ export const ListLayout = () => {
 
     fetchData();
   }, []);
+
   useEffect(() => {
     if (selectedProduct) {
       setTotalPrice(Number(selectedProduct.price) * quantity);
@@ -41,95 +40,110 @@ export const ListLayout = () => {
   };
 
   return (
-
-    <div style={{ display: "flex", backgroundColor: "white" }}>
+    <div style={{ display: "flex", backgroundColor: "#E5E7EB", height: "700px" }}>
       {selectedProduct && (
-        <div style={{ width: "60%", padding: "20px", float: "left" }}>
+        <div style={{
+          width: "63%",
+          padding: "20px",
+          background: "white",
+          borderRadius: "8px",
+          margin: "20px",
+          marginLeft: "5%",
+          maxHeight: "600px", // Set a maximum height
+        }}>
           <div>
             <img
               src="https://picsum.photos/200/300"
               alt=""
-              style={{ width: "30%", height: "40%", marginTop: "100px", marginLeft: "40%" }}
+              style={{ width: "30%", height: "40%", marginTop: "50px", marginLeft: "40%" }}
             />
           </div>
           <div style={{ marginLeft: "20px" }}>
             <h2>{selectedProduct.productName}</h2>
             <p>{selectedProduct.description}</p>
 
-            <div style={{ display: "flex", alignItems: "center", position: "fixed" }}>
-              <label htmlFor="quantity" style={{ marginRight: "10px", position: "fixed" }}></label>
-              <QuantityButton quantity={quantity} setQuantity={setQuantity} />
-              <p style={{ marginLeft: "650px", fontWeight: "bold", position: "fixed" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "20px" }}>
+              {/* Quantity Buttons and Quantity Display */}
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <button onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)} disabled={quantity <= 1} style={{ marginRight: "5px" }}>-</button>
+                <span style={{ margin: "0 5px" }}>{quantity}</span>
+                <button onClick={() => setQuantity(quantity + 1)} style={{ marginLeft: "5px" }}>+</button>
+              </div>
+
+              {/* Total Price */}
+              <p style={{ fontWeight: "bold" }}>
                 ${totalPrice}
               </p>
+
+              {/* Add to Cart Button */}
               <button
                 onClick={handleAddToCart}
-                style={{ backgroundColor: " #3B82F6", color: "#fff", padding: "8px 12px", border: "none", cursor: "pointer", marginLeft: "750px", borderRadius: "10px", position: "fixed" }}
+                style={{ backgroundColor: "#3B82F6", color: "#fff", padding: "8px 12px", border: "none", cursor: "pointer", borderRadius: "10px" }}
               >
                 Add to Cart
               </button>
-             
-      
-
-
             </div>
           </div>
         </div>
       )}
 
-      <div style={{ width: "35%", float: "right", padding: "20px" }}>
+      <div style={{
+        width: "40%",
+        padding: "20px",
+        marginRight: "5%",
+        
+        
+        
+        
+      }}>
         {data.map((product, index) => (
           <div
             key={index}
             style={{
-              marginBottom: "20px",
-              border: "1px solid #ccc",
+              marginBottom: "10px",
+              border: "1px solid white",
+              backgroundColor: "white",
+              borderRadius: "8px",
               padding: "10px",
-              position: "relative",
               display: "flex",
-              flexDirection: "column",
+              alignItems: "center",
             }}
           >
             <img
               src="https://picsum.photos/200/300"
               alt=""
-              style={{ width: "160px", height: "120px", marginBottom: "10px" }}
+              style={{ width: "120px", height: "80px", marginRight: "10px" }}
             />
-            <p
-              style={{
-                margin: "0",
-                fontSize: "20px",
-                fontWeight: "bold",
-                cursor: "pointer",
-              }}
-            >
-              {product.productName}
-            </p>
-            <p style={{ margin: "0", marginBottom: "10px" }}>
-              {product.description}
-            </p>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <p
-                style={{
-                  margin: "0",
-                  marginRight: "20px",
-                  fontWeight: "bold",
-                }}
-              >
-                ${product.price}
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+              marginRight: "10px" // Added to prevent text from touching the Detail button
+            }}>
+              <p style={{ margin: "0", fontSize: "15px", fontWeight: "bold" }}>
+                {product.productName}
               </p>
-              <button
-                onClick={() => handleDetailClick(product)}
-                style={{
-                  padding: "5px 8px",
-                  cursor: "pointer",
-                  marginLeft: "40px",
-                  color: "blue",
-
-                }}
-              >
-                Detail
-              </button>
+              <p style={{ margin: "0", marginBottom: "10px", fontSize:"13px" }}>
+                {product.description}
+              </p>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <p style={{ margin: "0", marginRight: "20px", fontWeight: "bold" }}>
+                  ${product.price}
+                </p>
+                <button
+                  onClick={() => handleDetailClick(product)}
+                  style={{
+                    backgroundColor: "white",
+                    color: "#3B82F6",
+                    padding: "5px 8px",
+                    border: "none",
+                    cursor: "pointer",
+                    marginLeft: "auto", // Changed to auto to push the button to the far right
+                  }}
+                >
+                  Detail
+                </button>
+              </div>
             </div>
           </div>
         ))}
