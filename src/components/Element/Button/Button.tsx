@@ -1,5 +1,18 @@
 import React from 'react';
 
+interface ButtonProps {
+    onClick: () => void;
+    text: string;
+}
+
+export const Button: React.FC<ButtonProps> = ({ onClick, text }) => {
+    return (
+        <button onClick={onClick}>
+            {text}
+        </button>
+    );
+}
+
 interface QuantityButtonProps {
     quantity: number;
     setQuantity: (quantity: number) => void;
@@ -18,9 +31,9 @@ export const QuantityButton: React.FC<QuantityButtonProps> = ({ quantity, setQua
 
     return (
         <div>
-            <button onClick={decrement}>-</button>
+            <Button onClick={decrement} text="-" />
             <span>{quantity}</span>
-            <button onClick={increment}>+</button>
+            <Button onClick={increment} text="+" />
         </div>
     );
 };
