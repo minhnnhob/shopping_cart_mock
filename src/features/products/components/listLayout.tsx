@@ -57,7 +57,7 @@ const ListLayout = () => {
   const handleAddToCart = () => {
     if (selectedProduct) {
       console.log(`Added ${selectedProduct.productName} to the cart.`);
-      dispatch(addToCart({ ...selectedProduct, iproductIdd: selectedProduct.iproductIdd, imageUrl: "https://picsum.photos/200/300" }));
+      dispatch(addToCart({ ...selectedProduct, productId: selectedProduct.productId, imageUrl: "https://picsum.photos/200/300" }));
       alert('Added to cart successfully!');
     }
   };

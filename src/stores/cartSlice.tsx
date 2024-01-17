@@ -22,7 +22,7 @@ export const cartSlice = createSlice({
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
       const id = action.payload;
-      const index = state.items.findIndex(item => item.iproductIdd === id);
+      const index = state.items.findIndex(item => item.productId === id);
       if (index !== -1) {
         state.items.splice(index, 1);
       }

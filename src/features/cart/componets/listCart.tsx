@@ -16,7 +16,7 @@ const ListCart = () => {
     return (
         <Row>
             {cartItems.map((item) => (
-                <Col key={item.iproductIdd} md={4} className="">
+                <Col key={item.productId} md={4} className="">
                     <Card style={{ width: '800px', marginBottom: '24px' }}>
                         <Card.Body style={{ display: 'flex', padding: '1rem', backgroundColor: 'white', borderRadius: '8px' }}>
                             <div style={{ display: 'flex' }}>
@@ -31,7 +31,7 @@ const ListCart = () => {
                                 </div>
                             </div>
                             <div style={{ marginLeft: 'auto' }}>
-                                <FontAwesomeIcon icon={faTrashAlt} style={{ color: '#de1717', cursor: 'pointer' }} onClick={() => handleRemove(item.iproductIdd)} />
+                                <FontAwesomeIcon icon={faTrashAlt} style={{ color: '#de1717', cursor: 'pointer' }} onClick={() => handleRemove(item.productId)} />
                                 <Card.Text>{item.price}</Card.Text>
                             </div>
                         </Card.Body>
