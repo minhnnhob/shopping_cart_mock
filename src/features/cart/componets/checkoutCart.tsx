@@ -3,7 +3,7 @@ import { RootState } from '../../../stores/store';
 const CheckoutCart: React.FC = () => {
     const cartItems = useSelector((state: RootState) => state.cart.items);
     const calculateTotal = () => {
-        return cartItems.reduce((total, item) => total + Number(item.price), 0) + 10;
+        return cartItems.reduce((total, item) => total + Number(item.price), 0) ;
       };
 
     return (
@@ -19,7 +19,7 @@ const CheckoutCart: React.FC = () => {
 
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <p className="subleft">Shipping Cost: </p>
-                        <p className="subright">$10</p>
+                        <p className="subright">$0</p>
                     </div>
 
                     <div style={{ display: "flex", justifyContent: "space-between" }}>

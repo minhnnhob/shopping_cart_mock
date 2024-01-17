@@ -9,6 +9,9 @@ import { useCartActions } from '../api/index';
 const ListCart = () => {
     const { handleRemove } = useCartActions(); // use the custom hook
     const cartItems = useSelector((state: RootState) => state.cart.items);
+    if (cartItems.length === 0) {
+        return <p >There are 0 products in the cart.</p>;
+    }
 
     return (
         <Row>
@@ -21,7 +24,7 @@ const ListCart = () => {
                                 <div>
                                     <Card.Title style={{ marginLeft: '2rem', fontSize: '20px', fontWeight: 'bold' }}>{item.productName}</Card.Title>
                                     <Card.Text style={{ marginLeft: '2rem' }}>{item.description}</Card.Text>
-                        
+                                     
                                     <div style={{ marginLeft: '2rem' }}>
                                       
                                     </div>
@@ -38,5 +41,6 @@ const ListCart = () => {
         </Row>
     );
 };
+//hehe
 
 export default ListCart;
