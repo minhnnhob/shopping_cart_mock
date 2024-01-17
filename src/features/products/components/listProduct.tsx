@@ -1,7 +1,17 @@
+// ListProduct.js
 import React, { useEffect, useState } from 'react';
 import { GetAllProduct } from '../api/getAllProduct';
 import { Product } from '../interface/interface';
-
+import {
+  ProductContainer,
+  ProductImage,
+  ProductInfoContainer,
+  ProductName,
+  ProductDescription,
+  ProductPriceContainer,
+  ProductPrice,
+  DetailButton,
+} from './product.Styled';
 
 interface ListProductProps {
   onProductSelect: (product: Product) => void;
@@ -20,21 +30,21 @@ export const ListProduct = ({ onProductSelect }: ListProductProps) => {
   }, []);
 
   return (
-    <div style={{ }}>
+    <div>
       {products.map((product, index) => (
-        <div key={index} style={{ marginBottom: "10px", border: "1px solid white", backgroundColor: "white", borderRadius: "8px", padding: "10px", display: "flex", alignItems: "center" }}>
-          <img src="https://picsum.photos/200/300" alt={product.productName} style={{ width: "120px", height: "80px", marginRight: "10px" }} />
-          <div style={{ display: "flex", flexDirection: "column", flex: 1, marginRight: "10px" }}>
-            <p style={{ margin: "0", fontSize: "15px", fontWeight: "bold" }}>{product.productName}</p>
-            <p style={{ margin: "0", marginBottom: "10px", fontSize: "13px" }}>{product.description}</p>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <p style={{ margin: "0", marginRight: "20px", fontWeight: "bold" }}>${product.price}</p>
-              <button onClick={() => onProductSelect(product)} style={{ backgroundColor: "white", color: "#3B82F6", padding: "5px 8px", border: "none", cursor: "pointer", marginLeft: "auto" }}>
+        <ProductContainer key={index}>
+          <ProductImage src="https://picsum.photos/200/300" alt={product.productName} />
+          <ProductInfoContainer>
+            <ProductName>{product.productName}</ProductName>
+            <ProductDescription>{product.description}</ProductDescription>
+            <ProductPriceContainer>
+              <ProductPrice>${product.price}</ProductPrice>
+              <DetailButton onClick={() => onProductSelect(product)}>
                 Detail
-              </button>
-            </div>
-          </div>
-        </div>
+              </DetailButton>
+            </ProductPriceContainer>
+          </ProductInfoContainer>
+        </ProductContainer>
       ))}
     </div>
   );

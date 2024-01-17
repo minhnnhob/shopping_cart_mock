@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import NavBar from "../components/NavBar";
-import ListLayout from "../features/products/components/listLayout";
+
 
 import { ShoppingCart } from "../features/cart/routes";
 
@@ -11,7 +11,7 @@ import { ProductsLayout } from "../features/products/routes";
 
 
 export const AppRoutes: React.FC = () => {
-  const commonRoutes = [{ path: "/", element: <ListLayout /> }];
+  const commonRoutes = [{ path: "/", element: <ProductsLayout /> }];
 
   return (
     <>
@@ -27,7 +27,7 @@ export const AppRoutes: React.FC = () => {
 
           <Route path="/products/*" element={<ProductsLayout/>} />
           <Route path="/home" element={<Home />} />
-          <Route path="/review" element={<ListLayout />} />
+          <Route path="/review" element={<Home />} />
           <Route path="/cart" element={<ShoppingCart />} />
           {/* check */}
         </Routes>

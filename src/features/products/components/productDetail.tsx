@@ -1,11 +1,23 @@
+// ProductDetail.js
 import React, { useState, useEffect } from 'react';
+import {
+  ProductDetailContainer,
+  ProductImageStyled,
+  ProductInfoStyled,
+  ProductTitleStyled,
+  ProductDescriptionStyled,
+  QuantityContainerStyled,
+  QuantityButtonStyled,
+  TotalPriceStyled,
+  AddToCartButtonStyled,
+} from './product.Styled';
 import { Product } from '../interface/interface';
 
 interface ProductDetailProps {
   product: Product;
 }
 
-export const ProductDetail = ({ product }: ProductDetailProps) => {
+const ProductDetail = ({ product }: ProductDetailProps) => {
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -23,24 +35,22 @@ export const ProductDetail = ({ product }: ProductDetailProps) => {
   }
 
   return (
-    <div style={{  }}>
-      <div>
-        <img src={ "https://picsum.photos/200/300"} alt={product.productName} style={{ width: "30%", height: "30%", marginTop: "50px", marginLeft: "35%" }} />
-      </div>
-      <div style={{ marginTop: "20px" }}>
-        <h2>{product.productName}</h2>
-        <p>{product.description}</p>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "20px" }}>
+    <ProductDetailContainer>
+      <ProductImageStyled src="https://picsum.photos/200/300" alt={product.productName} />
+      <ProductInfoStyled>
+        <ProductTitleStyled>{product.productName}</ProductTitleStyled>
+        <ProductDescriptionStyled>{product.description}</ProductDescriptionStyled>
+        <QuantityContainerStyled>
           <div style={{ display: "flex", alignItems: "center", backgroundColor:"#E5E7EB"}}>
-            <button onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)} disabled={quantity <= 1} style={{color: "#FF7300", border:"1px solid #E5E7EB"}}>-</button>
+            <QuantityButtonStyled onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)} disabled={quantity <= 1}>-</QuantityButtonStyled>
             <span style={{ margin: "0 10px" }}>{quantity}</span>
-            <button onClick={() => setQuantity(quantity + 1)} style={{color: "#FF7300",border:"1px solid #E5E7EB"}}>+</button>
+            <QuantityButtonStyled onClick={() => setQuantity(quantity + 1)}>+</QuantityButtonStyled>
           </div>
-          <p style={{ fontWeight: "bold", marginLeft:"420px" }}>${totalPrice.toFixed(2)}</p>
-          <button onClick={handleAddToCart} style={{ backgroundColor: "#3B82F6", color: "#fff", padding: "10px 15px", border: "none", cursor: "pointer", borderRadius: "5px" }}>Add to Cart</button>
-        </div>
-      </div>
-    </div>
+          <TotalPriceStyled>${totalPrice.toFixed(2)}</TotalPriceStyled>
+          <AddToCartButtonStyled onClick={handleAddToCart}>Add to Cart</AddToCartButtonStyled>
+        </QuantityContainerStyled>
+      </ProductInfoStyled>
+    </ProductDetailContainer>
   );
 };
 
