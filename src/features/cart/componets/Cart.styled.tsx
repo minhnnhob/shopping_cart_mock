@@ -153,6 +153,7 @@ margin: auto;
 
 export const StyledShoppingCartHeading = styled.h1`
 margin-top: 12px;
+padding-top: 12px;
 height: 36px;
 text-align: center;
 font-size: 16px;
