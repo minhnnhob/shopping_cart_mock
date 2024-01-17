@@ -1,26 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {
-  ListLayoutWrapper,
-  SelectedProductContainer,
-  ProductImage,
-  ProductDetailsContainer,
-  PriceCartSection,
-  QuantitySection,
-  TotalPrice,
-  AddToCartButton,
-  ProductListContainer,
-  ProductItem,
-  ListImage,
-  ProductInfo,
-  ProductName,
-  ProductDescription,
-  PriceDetailSection,
-  ProductPrice,
-  DetailButton
-} from './StyledComponents';
+
 import { GetAllProduct } from "../api/getAllProduct";
 import { Product } from "../interface/interface";
-
+import{}from "./StyledComponents";
 const ListLayout = () => {
   const [data, setData] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -64,7 +46,8 @@ const ListLayout = () => {
   };
 
   return (
-    <ListLayoutWrapper>
+    <>
+      {/* <ListLayoutWrapper>
       {selectedProduct && (
         <SelectedProductContainer>
           <ProductImage
@@ -104,7 +87,9 @@ const ListLayout = () => {
           </ProductItem>
         ))}
       </ProductListContainer>
-    </ListLayoutWrapper>
+    </ListLayoutWrapper> */}
+    </>
+  
   );
 };
 

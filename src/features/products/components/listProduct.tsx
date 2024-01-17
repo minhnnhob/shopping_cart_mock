@@ -7,7 +7,7 @@ interface ListProductProps {
   onProductSelect: (product: Product) => void;
 }
 
-const ListProduct = ({ onProductSelect }: ListProductProps) => {
+export const ListProduct = ({ onProductSelect }: ListProductProps) => {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {

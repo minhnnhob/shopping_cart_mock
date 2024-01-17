@@ -6,7 +6,7 @@ interface ProductDetailProps {
   product: Product;
 }
 
-const ProductDetail = ({ product }: ProductDetailProps) => {
+export const ProductDetail = ({ product }: ProductDetailProps) => {
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
 
