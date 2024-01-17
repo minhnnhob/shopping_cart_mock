@@ -20,7 +20,7 @@ export const ListProduct = ({ onProductSelect }: ListProductProps) => {
   }, []);
 
   return (
-    <div style={{ width: "40%", padding: "20px", marginRight: "5%" }}>
+    <div style={{ }}>
       {products.map((product, index) => (
         <div key={index} style={{ marginBottom: "10px", border: "1px solid white", backgroundColor: "white", borderRadius: "8px", padding: "10px", display: "flex", alignItems: "center" }}>
           <img src="https://picsum.photos/200/300" alt={product.productName} style={{ width: "120px", height: "80px", marginRight: "10px" }} />
