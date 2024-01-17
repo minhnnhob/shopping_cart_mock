@@ -26,7 +26,7 @@ export const ProductDetail = ({ product }: ProductDetailProps) => {
   return (
     <div style={{ width: "60%", padding: "20px", background: "white", borderRadius: "8px", margin: "20px" }}>
       <div>
-        <img src={product.imageUrl || "https://picsum.photos/200/300"} alt={product.productName} style={{ width: "100%", height: "auto", marginTop: "20px" }} />
+        <img src={ "https://picsum.photos/200/300"} alt={product.productName} style={{ width: "100%", height: "auto", marginTop: "20px" }} />
       </div>
       <div style={{ marginTop: "20px" }}>
         <h2>{product.productName}</h2>

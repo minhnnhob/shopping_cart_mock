@@ -31,15 +31,17 @@ export const ProductsLayout = () => {
     // You should replace this with actual logic to fetch the product based on the ID
     const fetchProduct = async (productId: string) => {
       try {
-        const response = await fetch(`https://your-api-url/products/${productId}`);
+        const response = await fetch(
+          `https://your-api-url/products/${productId}`
+        );
         const product = await response.json();
-    
+
         setSelectedProduct({
           productId: product.id,
           productName: product.name,
           description: product.description,
           price: product.price,
-          imageUrl: product.image,
+          imageUrl: "https://picsum.photos/200/300",
         });
       } catch (error) {
         console.error(`Failed to fetch product with id: ${productId}`, error);
@@ -55,18 +57,20 @@ export const ProductsLayout = () => {
     }, [id, selectedProduct]);
 
     return (
-      <div >
+      <div>
         {selectedProduct ? (
           <ProductDetail product={selectedProduct} />
         ) : (
           <>
-          <ProductDetail product={{
-            productId: "1",
-            productName: "Product 1",
-            description: "This is product 1",
-            price: "100",
-            imageUrl: "https://picsum.photos/200/300",
-          }} />
+            <ProductDetail
+              product={{
+                productId: "1",
+                productName: "Product 1",
+                description: "This is product 1",
+                price: "100",
+                imageUrl: "https://picsum.photos/200/300",
+              }}
+            />
           </> // Or any other loading state representation
         )}
       </div>
@@ -78,11 +82,10 @@ export const ProductsLayout = () => {
       path: "/",
       element: (
         <>
-        <div style={{display:"flex"}}>
-        <ProductDetailWrapper />
-          <ListProduct onProductSelect={onProductSelect} />
-        </div>
-          
+          <div style={{ display: "flex" }}>
+            <ProductDetailWrapper />
+            <ListProduct onProductSelect={onProductSelect} />
+          </div>
         </>
       ),
     },
@@ -90,10 +93,10 @@ export const ProductsLayout = () => {
       path: ":productId",
       element: (
         <>
-        <div style={{display:"flex"}}>
-        <ProductDetailWrapper />
-          <ListProduct onProductSelect={onProductSelect} />
-        </div>
+          <div style={{ display: "flex" }}>
+            <ProductDetailWrapper />
+            <ListProduct onProductSelect={onProductSelect} />
+          </div>
         </>
       ),
     },
