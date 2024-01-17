@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import {
   StyledRow,

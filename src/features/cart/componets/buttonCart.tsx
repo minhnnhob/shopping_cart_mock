@@ -1,10 +1,11 @@
-
 import { CheckoutButton, ContinueShoppingButton } from "./Cart.styled";
 
 const ButtonCart = () => {
   const handleCheckout = () => {
-    const shouldCheckout = window.confirm("Do you want to proceed with the checkout?");
-    
+    const shouldCheckout = window.confirm(
+      "Do you want to proceed with the checkout?"
+    );
+
     if (shouldCheckout) {
       // Add your logic for handling checkout here
       console.log("Checking out...");
@@ -21,9 +22,7 @@ const ButtonCart = () => {
   return (
     <div>
       <div>
-        <CheckoutButton onClick={handleCheckout}>
-          Checkout
-        </CheckoutButton>
+        <CheckoutButton onClick={handleCheckout}>Checkout</CheckoutButton>
       </div>
       <div>
         <ContinueShoppingButton onClick={handleContinueShopping}>

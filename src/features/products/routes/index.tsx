@@ -1,6 +1,6 @@
 // ProductsLayout.js
 import React, { useState, useEffect } from "react";
-import { Route, Routes, useParams, useRoutes } from "react-router-dom";
+import { useParams, useRoutes } from "react-router-dom";
 import ListProduct from "../components/listProduct"; // Adjust the path as necessary
 import ProductDetail from "../components/productDetail"; // Adjust the path as necessary
 import { GetAllProduct } from "../api/getAllProduct"; // Adjust the path as necessary
@@ -12,7 +12,7 @@ import {
 } from "../components/product.Styled";
 
 export const ProductsLayout = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [product, setProducts] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ export const ProductsLayout = () => {
       } else if (selectedProduct) {
         setSelectedProduct(selectedProduct);
       }
-    }, [id, selectedProduct]);
+    }, [id]);
 
     return (
       <ProductDetailContainerStyled>
