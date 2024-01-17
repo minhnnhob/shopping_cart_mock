@@ -13,7 +13,7 @@ const NavBar: React.FC = () => {
   };
 
   return (
-    <div className="container" style={{ display: "flex" , justifyContent:"space-between", paddingTop:"1rem", alignItems:"center"}}>
+    <div className="container" style={{ display: "flex" , justifyContent:"space-between",height:"55px", alignItems:"center"}}>
       <div
         style={{
           display: "flex",
@@ -47,6 +47,7 @@ const NavBar: React.FC = () => {
         <i className="ri-shopping-cart-2-fill " style={{color:"#3B82F6", fontSize:"2rem"}}></i>
       </div>
       </NavLink>
+      
     </div>
   );
 };
