@@ -65,19 +65,27 @@ export const ProductDetailContainer = styled.div`
 `;
 
 export const ProductImageStyled = styled.img`
-  width: 30%;
-  height: 30%;
+  width: 35%;
+  height: 60%;
   margin-top: 50px;
 
 `;
 
 export const ProductInfoStyled = styled.div`
-  margin-top: 20px;
 `;
 
-export const ProductTitleStyled = styled.h2``;
 
-export const ProductDescriptionStyled = styled.p``;
+export const ProductTitleStyled = styled.h2`
+display: flex;
+font-size: 30px;
+`;
+
+
+export const ProductDescriptionStyled = styled.p`
+display: flex;
+margin-top:10px;
+font-size: 15px;
+`;
 
 export const QuantityContainerStyled = styled.div`
   display: flex;

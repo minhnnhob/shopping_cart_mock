@@ -37,9 +37,10 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
   return (
     <ProductDetailContainer>
       <ProductImageStyled src="https://picsum.photos/200/300" alt={product.productName} />
-      <ProductInfoStyled>
+      <ProductInfoStyled >
         <ProductTitleStyled>{product.productName}</ProductTitleStyled>
-        <ProductDescriptionStyled>{product.description}</ProductDescriptionStyled>
+        <ProductDescriptionStyled >{product.description}</ProductDescriptionStyled>
+        </ProductInfoStyled>
         <QuantityContainerStyled>
           <div style={{ display: "flex", alignItems: "center", backgroundColor:"#E5E7EB"}}>
             <QuantityButtonStyled onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)} disabled={quantity <= 1}>-</QuantityButtonStyled>
@@ -49,7 +50,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
           <TotalPriceStyled>${totalPrice.toFixed(2)}</TotalPriceStyled>
           <AddToCartButtonStyled onClick={handleAddToCart}>Add to Cart</AddToCartButtonStyled>
         </QuantityContainerStyled>
-      </ProductInfoStyled>
+      
     </ProductDetailContainer>
   );
 };
