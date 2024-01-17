@@ -1,5 +1,4 @@
-// ButtonCart.js
-import React from "react";
+
 import { CheckoutButton, ContinueShoppingButton } from "./Cart.styled";
 
 const ButtonCart = () => {
