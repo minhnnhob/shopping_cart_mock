@@ -3,9 +3,9 @@ import React from 'react';
 
 const Home: React.FC = () => {
   return (
-    <div  style={{ textAlign: 'right', maxWidth: '100%', overflow: 'hidden' }}>
+    <div  style={{ textAlign: 'right',  overflow: 'hidden' }}>
 
-     <img src={require("../../../assets/comming-soon.png")} alt=""   style={{ maxWidth: '100%', height: 'auto' }} />
+     <img src={require("../../../assets/comming-soon.png")} style={{maxWidth: "20rem",height: "20rem",}}  />
     </div>
   );
 };
