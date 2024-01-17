@@ -1,9 +1,9 @@
 // interface/Interface.tsx
 export interface CartItem {
-    id: number;
-    name: string;
-    description: string;
-    price: number;
-    quantity: number;
-    image: string;
+  iproductIdd: string;
+  productName: string;
+  description: string;
+  price: string;
+  imageUrl: string;
   }
+  export default CartItem;

@@ -1,20 +1,11 @@
-// Logic xử lý giỏ hàng
+import { useDispatch } from 'react-redux';
+import { removeFromCart } from '../../../stores/cartSlice'; // Make sure to import the 'remove' action from your cart slice
 
-import { useState } from "react";
+export const useCartActions = () => {
+  const dispatch = useDispatch();
 
-// Các hàm xử lý giỏ hàng
-const handleRemove = () => {
-    // Xử lý remove item
-    
-} 
-
-const handleIncrement = () => {}
-
-const handleDecrement = () => {}
-
-// Export ra ngoài các hàm xử lý
-export {
-  handleRemove,
-  handleIncrement,
-  handleDecrement
+  const handleRemove = (id: string) => {
+    dispatch(removeFromCart(id));
+  };
+  return { handleRemove };
 }

@@ -24,9 +24,9 @@ export const AppRoutes: React.FC = () => {
 
           <Route path="/products" element={<ListLayout />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/review" element={<ListLayout />} />
+          <Route path="/review" element={<Home />} />
           <Route path="/cart" element={<ShoppingCart />} />
-          {/* check */}
+
         </Routes>
       </div>
     </>
