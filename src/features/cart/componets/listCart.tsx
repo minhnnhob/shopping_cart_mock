@@ -12,6 +12,8 @@ import {
   QuantityContainer,
   PriceContainer,
   StyledFontAwesomeIcon,
+  StyledPlus,
+  StyledSpace,
 } from "./Cart.styled";
 
 import { useSelector } from "react-redux";
@@ -41,7 +43,9 @@ const ListCart = () => {
                 <DetailsContainer>
                   <StyledTitle>{item.productName}</StyledTitle>
                   <StyledText>{item.description}</StyledText>
+
                   <QuantityContainer></QuantityContainer>
+
                 </DetailsContainer>
               </ImageContainer>
               <PriceContainer>
