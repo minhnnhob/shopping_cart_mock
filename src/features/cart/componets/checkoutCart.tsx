@@ -1,5 +1,4 @@
-
-import React, { useState } from "react";
+import React from "react";
 import {
   StyledContainer,
   StyledOrderContainer,
@@ -11,48 +10,22 @@ import {
   TotalHeading,
   TotalAmount,
 } from "./Cart.styled";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../stores/store";
 
-
-const CheckoutCart = () => {
-  const [cartItems] = useState([
-    {
-      id: 1,
-      name: "Product 1",
-      description: "fhdkkdfdkfjdkjfdkjf",
-      price: 20,
-      quantity: 1,
-      image: "https://picsum.photos/200/300?grayscale",
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      description: "fhdkkdfdkfjdkjfdkjf",
-      price: 30,
-      quantity: 1,
-      image: "https://picsum.photos/200/300?grayscale",
-    },
-    {
-      id: 3,
-      name: "Product 3",
-      description: "fhdkkdfdkfjdkjfdkjf",
-      price: 20,
-      quantity: 1,
-      image: "https://picsum.photos/200/300?grayscale",
-    },
-    {
-      id: 4,
-      name: "Product 4",
-      description: "fhdkkdfdkfjdkjfdkjf",
-      price: 30,
-      quantity: 1,
-      image: "https://picsum.photos/200/300?grayscale",
-    },
-  ]);
-
-  const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+const CheckoutCart: React.FC = () => {
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const calculateSubtotal = () => {
+    let subtotal = cartItems.reduce((total, item) => total + Number(item.price), 0);
+    return subtotal.toFixed(1); 
   };
-
+  const calculateTotal = () => {
+    let total = Number(calculateSubtotal());
+    if (cartItems.length > 0) {
+      total += 10; 
+    }
+    return total.toFixed(0);
+  };
   return (
     <StyledContainer>
       <StyledOrderContainer>
@@ -60,13 +33,22 @@ const CheckoutCart = () => {
 
         <SubtotalContainer>
           <SubtotalLeft>Subtotal: </SubtotalLeft>
-          <SubtotalRight>$0</SubtotalRight>
+          <SubtotalRight>${calculateSubtotal()}</SubtotalRight>
         </SubtotalContainer>
 
         <ShoppingCostContainer>
-          <p className="subleft">Shopping Cost: </p>
-          <p className="subright">$0</p>
-        </ShoppingCostContainer>
+  {cartItems.length > 0 ? (
+    <>
+      <p className="subleft">Shipping Cost: </p>
+      <p className="subright">$10</p>
+    </>
+  ) : (
+    <>
+      <p className="subleft">Shipping Cost: </p>
+      <p className="subright">$0</p>
+    </>
+  )}
+</ShoppingCostContainer>
 
         <TotalContainer>
           <TotalHeading>Total: </TotalHeading>

@@ -29,7 +29,7 @@ export const AppRoutes: React.FC = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/review" element={<Home />} />
           <Route path="/cart" element={<ShoppingCart />} />
-          {/* check */}
+
         </Routes>
       </div>
     </>

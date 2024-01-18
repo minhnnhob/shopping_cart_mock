@@ -1,4 +1,3 @@
-import  { useState } from "react";
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import {
   StyledRow,
@@ -11,67 +10,48 @@ import {
   StyledTitle,
   StyledText,
   QuantityContainer,
-  QuantityButton,
   PriceContainer,
   StyledFontAwesomeIcon,
   StyledPlus,
   StyledSpace,
 } from "./Cart.styled";
 
+import { useSelector } from "react-redux";
+import { RootState } from "../../../stores/store";
+import { useCartActions } from "../api/index";
+//import { removeFromCart } from "../../../stores/cartSlice";
 
 const ListCart = () => {
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: "Product 1", description: "fhdkkdfdkfjdkjfdkjf", price: 20, quantity: 1, image: "https://picsum.photos/200/300?grayscale" },
-    { id: 2, name: "Product 2", description: "fhdkkdfdkfjdkjfdkjf", price: 30, quantity: 1, image: "https://picsum.photos/200/300?grayscale" },
-    { id: 3, name: "Product 3", description: "fhdkkdfdkfjdkjfdkjf", price: 20, quantity: 1, image: "https://picsum.photos/200/300?grayscale" },
-    { id: 4, name: "Product 4", description: "fhdkkdfdkfjdkjfdkjf", price: 30, quantity: 1, image: "https://picsum.photos/200/300?grayscale" },
-  ]);
+  const { handleRemove } = useCartActions(); // use the custom hook
+  const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  const handleRemoveItem = (itemId: number) => {
-    const updatedCart = cartItems.filter((item) => item.id !== itemId);
-    setCartItems(updatedCart);
+  const handleRemoveItem = (itemId: string) => {
+    handleRemove(itemId);
   };
 
-  const handleIncrement = (itemId: number) => {
-    const updatedCart = cartItems.map((item) =>
-      item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
-    );
-    setCartItems(updatedCart);
-  };
-
-  const handleDecrement = (itemId: number) => {
-    const updatedCart = cartItems.map((item) =>
-      item.id === itemId && item.quantity > 1
-        ? { ...item, quantity: item.quantity - 1 }
-        : item
-    );
-    setCartItems(updatedCart);
-  };
-
+  if (cartItems.length === 0) {
+    return <p>There are 0 products in the cart.</p>;
+  }
   return (
     <StyledRow>
       {cartItems.map((item) => (
-        <StyledCol key={item.id} md={4}>
+        <StyledCol key={item.productId} md={4}>
           <StyledCard>
             <StyledCardBody>
               <ImageContainer>
-                <StyledImg src={item.image} />
+                <StyledImg src={item.imageUrl} />
                 <DetailsContainer>
-                  <StyledTitle>{item.name}</StyledTitle>
+                  <StyledTitle>{item.productName}</StyledTitle>
                   <StyledText>{item.description}</StyledText>
-                  <QuantityContainer>
-                  <StyledPlus>
-                    <QuantityButton onClick={() => handleDecrement(item.id)}>-</QuantityButton>
-                    <StyledSpace>{item.quantity}</StyledSpace>
-                    <QuantityButton onClick={() => handleIncrement(item.id)}>+</QuantityButton>
-                    </StyledPlus>
-                  </QuantityContainer>
+
+                  <QuantityContainer></QuantityContainer>
+
                 </DetailsContainer>
               </ImageContainer>
               <PriceContainer>
                 <StyledFontAwesomeIcon
                   icon={faTrashAlt}
-                  onClick={() => handleRemoveItem(item.id)}
+                  onClick={() => handleRemoveItem(item.productId)}
                 />
                 <StyledText>${item.price}</StyledText>
               </PriceContainer>

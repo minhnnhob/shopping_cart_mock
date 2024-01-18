@@ -1,5 +1,10 @@
-// ProductDetail.js
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from "react";
+import { useDispatch } from 'react-redux';
+import { addToCart} from '../../../stores/cartSlice'; // Import the 'changeQuantity' action
+import {
+  // ... your styled components
+} from './product.Styled';
+import { Product } from '../interface/interface';
 import {
   ProductDetailContainer,
   ProductImageStyled,
@@ -10,9 +15,8 @@ import {
   QuantityButtonStyled,
   TotalPriceStyled,
   AddToCartButtonStyled,
-} from './product.Styled';
-import { Product } from '../interface/interface';
 
+} from './product.Styled';
 interface ProductDetailProps {
   product: Product;
 }
@@ -20,6 +24,7 @@ interface ProductDetailProps {
 const ProductDetail = ({ product }: ProductDetailProps) => {
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setTotalPrice(Number(product.price) * quantity);
@@ -27,9 +32,11 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
 
   const handleAddToCart = () => {
     console.log(`Added ${quantity} ${product.productName}(s) to the cart.`);
-    // Add the logic to add the product to the cart
+    dispatch(addToCart({ ...product, productId: product.productId, imageUrl: "https://picsum.photos/200/300"}));
+    alert (`Added  ${product.productName}(s) to the cart.`);
   };
 
+  
   if (!product) {
     return <div>No Product Selected</div>;
   }
@@ -50,7 +57,6 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
           <TotalPriceStyled>${totalPrice.toFixed(2)}</TotalPriceStyled>
           <AddToCartButtonStyled onClick={handleAddToCart}>Add to Cart</AddToCartButtonStyled>
         </QuantityContainerStyled>
-      
     </ProductDetailContainer>
   );
 };
