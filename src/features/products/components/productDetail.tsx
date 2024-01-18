@@ -33,6 +33,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
   const handleAddToCart = () => {
     console.log(`Added ${quantity} ${product.productName}(s) to the cart.`);
     dispatch(addToCart({ ...product, productId: product.productId, imageUrl: "https://picsum.photos/200/300"}));
+    alert (`Added  ${product.productName}(s) to the cart.`);
   };
 
   
