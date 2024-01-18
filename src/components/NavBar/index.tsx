@@ -1,74 +1,43 @@
-
-import { NavLink } from "react-router-dom";
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../stores/store';
-
+import {
+  Container,
+  NavLinksContainer,
+  NavLinkStyled,
+  Logo,
+  CartIconContainer,
+  CartIcon,
+  CartItemCount,
+} from './NavBar.Styled';
 
 const NavBar: React.FC = () => {
   const cartItemCount = useSelector((state: RootState) => state.cart.items.length);
-  const style = ({ isActive }: { isActive: boolean }) => {
-    return {
-      fontSize: "1.2rem",
-      fontWeight: isActive ? "bold" : "normal",
-      textDecoration: "none",
-      color: isActive ? "Black" : "gray",
-    };
-  };
 
   return (
-    <div className="container" style={{ display: "flex" , justifyContent:"space-between",height:"55px", alignItems:"center"}}>
-      <div
-        style={{
-          display: "flex",
-          width: "20%",
-          justifyContent: "space-between",
-          marginLeft: "2rem",
-        
-        }}
-      >
-        <div>
-          <NavLink style={style} to="/home">
-            Home
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to="/products" style={style}>
-            Products
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to="/review" style={style}>
-            Review
-          </NavLink>
-        </div>
-      </div>
+    <Container>
+      <NavLinksContainer>
+        <NavLinkStyled isActive={false} to="/home">
+          Home
+        </NavLinkStyled>
+        <NavLinkStyled isActive={false} to="/products">
+          Products
+        </NavLinkStyled>
+        <NavLinkStyled isActive={false} to="/review">
+          Review
+        </NavLinkStyled>
+      </NavLinksContainer>
 
-      <div className="logo" style={{fontWeight:"800",fontSize:"1.5rem", color:"#3B82F6"}}>Beauty.bd</div>
-      
-      <NavLink to="/cart" style={{ textDecoration: "none" }}>
-        <div className="cartIcon" style={{ marginRight: "2rem", position: 'relative' }}>
-          <i className="ri-shopping-cart-2-fill " style={{color:"#3B82F6", fontSize:"2rem"}}></i>
-          {cartItemCount > 0 && (
-            <span style={{
-              position: 'absolute',
-              top: '0',
-              right: '0',
-              background: 'red',
-              color: 'white',
-              borderRadius: '50%',
-              width: '20px',
-              height: '20px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-              {cartItemCount}
-            </span>
-          )}
-        </div>
-      </NavLink>
-      
-    </div>
+      <Logo>Beauty.bd</Logo>
+
+      <NavLinkStyled isActive={false} to="/cart" style={{ textDecoration: 'none' }}>
+        <CartIconContainer>
+          <CartIcon className="ri-shopping-cart-2-fill" />
+          {cartItemCount > 0 && <CartItemCount>{cartItemCount}</CartItemCount>}
+        </CartIconContainer>
+      </NavLinkStyled>
+    </Container>
   );
 };
+
 export default NavBar;

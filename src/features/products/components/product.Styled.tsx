@@ -1,6 +1,9 @@
 // ProductStyles.js
 import styled from 'styled-components';
 
+const mobileBreakpoint = '768px';
+const tabletBreakpoint = '1024px';
+
 export const ProductContainer = styled.div`
   margin-bottom: 10px;
   border: 1px solid white;
@@ -9,12 +12,31 @@ export const ProductContainer = styled.div`
   padding: 10px;
   display: flex;
   align-items: center;
+
+  @media (max-width: ${tabletBreakpoint}) {
+    flex-direction: column;
+  }
+
+  @media (max-width: ${mobileBreakpoint}) {
+    padding: 8px;
+  }
 `;
 
 export const ProductImage = styled.img`
   width: 120px;
   height: 80px;
   margin-right: 10px;
+
+  @media (max-width: ${mobileBreakpoint}) {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+  }
+  @media (max-width: ${tabletBreakpoint}) {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+  }
 `;
 
 export const ProductInfoContainer = styled.div`
@@ -56,10 +78,6 @@ export const DetailButton = styled.button`
   margin-left: auto;
 `;
 
-
-// ProductDetailStyles.js
-
-
 export const ProductDetailContainer = styled.div`
   text-align: center;
 `;
@@ -69,22 +87,29 @@ export const ProductImageStyled = styled.img`
   height: 60%;
   margin-top: 50px;
 
+  @media (max-width: ${mobileBreakpoint}) {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+  }
+  @media (max-width: ${tabletBreakpoint}) {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+  }
 `;
 
-export const ProductInfoStyled = styled.div`
-`;
-
+export const ProductInfoStyled = styled.div``;
 
 export const ProductTitleStyled = styled.h2`
-display: flex;
-font-size: 30px;
+  display: flex;
+  font-size: 30px;
 `;
 
-
 export const ProductDescriptionStyled = styled.p`
-display: flex;
-margin-top:10px;
-font-size: 15px;
+  display: flex;
+  margin-top: 10px;
+  font-size: 15px;
 `;
 
 export const QuantityContainerStyled = styled.div`
@@ -102,6 +127,13 @@ export const QuantityButtonStyled = styled.button`
 export const TotalPriceStyled = styled.p`
   font-weight: bold;
   margin-left: 420px;
+
+  @media (max-width: ${tabletBreakpoint}) {
+    margin-left: 0;
+  }
+  @media (max-width: ${mobileBreakpoint}) {
+    margin-left: 0;
+  }
 `;
 
 export const AddToCartButtonStyled = styled.button`
@@ -111,14 +143,26 @@ export const AddToCartButtonStyled = styled.button`
   border: none;
   cursor: pointer;
   border-radius: 5px;
+
+  @media (max-width: ${mobileBreakpoint}) {
+    width: 100%;
+  }
+  @media (max-width: ${tabletBreakpoint}) {
+    width: 100%;
+  }
 `;
-
-//index route
-// ProductsLayoutStyles.js
-
 
 export const ProductsLayoutContainerStyled = styled.div`
   display: flex;
+  height: 42.3rem;
+
+  @media (max-width: ${tabletBreakpoint}) {
+    flex-direction: column;
+    height: auto;
+  }
+  @media (max-width: ${mobileBreakpoint}) {
+    flex-direction: column;
+    height: auto;
 `;
 
 export const ProductDetailContainerStyled = styled.div`
@@ -129,10 +173,30 @@ export const ProductDetailContainerStyled = styled.div`
   margin-left: 8%;
   margin-top: 20px;
   margin-bottom: 15px;
+
+  @media (max-width: ${tabletBreakpoint}) {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  @media (max-width: ${mobileBreakpoint}) {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
 `;
 
 export const ListProductContainerStyled = styled.div`
   width: 40%;
   padding: 20px;
   margin-right: 7%;
+
+  @media (max-width: ${tabletBreakpoint}) {
+    width: 100%;
+    margin-right: 0;
+  }
+  @media (max-width: ${mobileBreakpoint}) {
+    width: 100%;
+    margin-right: 0;
+  }
 `;
