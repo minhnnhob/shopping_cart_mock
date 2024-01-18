@@ -39,7 +39,7 @@ const ListCart = () => {
               <ImageContainer>
                 <StyledImg src={item.imageUrl} />
                 <DetailsContainer>
-                  <StyledTitle>{item.imageUrl}</StyledTitle>
+                  <StyledTitle>{item.productName}</StyledTitle>
                   <StyledText>{item.description}</StyledText>
                   <QuantityContainer></QuantityContainer>
                 </DetailsContainer>
