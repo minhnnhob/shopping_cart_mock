@@ -33,7 +33,7 @@ export const ListProduct = ({ onProductSelect }: ListProductProps) => {
     <div>
       {products.map((product, index) => (
         <ProductContainer key={index}>
-          <ProductImage src="https://picsum.photos/200/300" alt={product.productName} />
+          <ProductImage src={product.imageUrl} />
           <ProductInfoContainer>
             <ProductName>{product.productName}</ProductName>
             <ProductDescription>{product.description}</ProductDescription>

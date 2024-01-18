@@ -14,6 +14,8 @@ import {
   QuantityButton,
   PriceContainer,
   StyledFontAwesomeIcon,
+  StyledPlus,
+  StyledSpace,
 } from "./Cart.styled";
 
 
@@ -58,13 +60,11 @@ const ListCart = () => {
                   <StyledTitle>{item.name}</StyledTitle>
                   <StyledText>{item.description}</StyledText>
                   <QuantityContainer>
-                    <QuantityButton onClick={() => handleDecrement(item.id)}>
-                      -
-                    </QuantityButton>
-                    <span>{item.quantity}</span>
-                    <QuantityButton onClick={() => handleIncrement(item.id)}>
-                      +
-                    </QuantityButton>
+                  <StyledPlus>
+                    <QuantityButton onClick={() => handleDecrement(item.id)}>-</QuantityButton>
+                    <StyledSpace>{item.quantity}</StyledSpace>
+                    <QuantityButton onClick={() => handleIncrement(item.id)}>+</QuantityButton>
+                    </StyledPlus>
                   </QuantityContainer>
                 </DetailsContainer>
               </ImageContainer>

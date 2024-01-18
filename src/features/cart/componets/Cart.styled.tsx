@@ -102,6 +102,8 @@ export const QuantityContainer = styled.div`
 
 export const QuantityButton = styled.button`
   margin-right: 2px;
+    color: #FF7300;
+  border: 1px solid #E5E7EB;
 `;
 
 export const PriceContainer = styled.div`
@@ -112,6 +114,18 @@ export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   color: #de1717;
   cursor: pointer;
 `;
+
+export const StyledPlus = styled.div`
+   display: "flex";
+   alignItems: "center";
+    backgroundColor:"#E5E7EB";
+ `;
+
+export const StyledSpace = styled.span`
+    margin: "0 10px";
+  `;
+
+
 
 //buttonCart.tsx
 
