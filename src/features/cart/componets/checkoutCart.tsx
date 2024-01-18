@@ -19,13 +19,12 @@ const CheckoutCart: React.FC = () => {
     let subtotal = cartItems.reduce((total, item) => total + Number(item.price), 0);
     return subtotal.toFixed(1); 
   };
-  
   const calculateTotal = () => {
     let total = Number(calculateSubtotal());
     if (cartItems.length > 0) {
       total += 10; 
     }
-    return total.toFixed(1); 
+    return total.toFixed(0);
   };
   return (
     <StyledContainer>

@@ -17,7 +17,7 @@ import {
 import { useSelector } from "react-redux";
 import { RootState } from "../../../stores/store";
 import { useCartActions } from "../api/index";
-import { removeFromCart } from "../../../stores/cartSlice";
+//import { removeFromCart } from "../../../stores/cartSlice";
 
 const ListCart = () => {
   const { handleRemove } = useCartActions(); // use the custom hook
