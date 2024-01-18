@@ -27,7 +27,7 @@ const CheckoutCart: React.FC = () => {
         (item) => (total = item.product.price * item.quantity + 10)
       );
     }
-    return total.toFixed(0);
+    return total.toFixed(2);
   };
 
   return (
