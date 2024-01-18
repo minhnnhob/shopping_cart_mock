@@ -1,14 +1,14 @@
-import React from 'react';
-import { Col } from 'react-bootstrap';
-import ListCart from '../componets/listCart';
-import CheckoutCart from '../componets/checkoutCart';
-import ButtonCart from '../componets/buttonCart';
+import React from "react";
+import { Col } from "react-bootstrap";
+import ListCart from "../componets/listCart";
+import CheckoutCart from "../componets/checkoutCart";
+import ButtonCart from "../componets/buttonCart";
 import {
   StyledShoppingCartRow,
   StyledShoppingCartContainer,
   StyledShoppingCartHeading,
   StyledShoppingCartContentWrapper,
-} from '../componets/Cart.styled';
+} from "../componets/Cart.styled";
 
 export const ShoppingCart: React.FC = () => {
   return (
@@ -16,7 +16,9 @@ export const ShoppingCart: React.FC = () => {
       <StyledShoppingCartRow>
         <Col md={12}>
           <StyledShoppingCartContainer>
-            <StyledShoppingCartHeading>My Shopping Cart</StyledShoppingCartHeading>
+            <StyledShoppingCartHeading>
+              My Shopping Cart
+            </StyledShoppingCartHeading>
             <StyledShoppingCartContentWrapper>
               <ListCart />
               <div>
