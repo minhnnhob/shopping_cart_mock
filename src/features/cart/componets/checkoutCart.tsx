@@ -16,9 +16,9 @@ import { RootState } from "../../../stores/store";
 const CheckoutCart: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + Number(item.price), 0);
+    const total = cartItems.reduce((total, item) => total + Number(item.price), 0);
+    return total.toFixed(1); // This will round the total to 1 decimal place
   };
-
   return (
     <StyledContainer>
       <StyledOrderContainer>

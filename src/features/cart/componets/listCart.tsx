@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import {
   StyledRow,
@@ -11,10 +10,8 @@ import {
   StyledTitle,
   StyledText,
   QuantityContainer,
-  // QuantityButton,
   PriceContainer,
   StyledFontAwesomeIcon,
-  // StyledFontAwesomeIcon,
 } from "./Cart.styled";
 
 import { useSelector } from "react-redux";
@@ -23,32 +20,12 @@ import { useCartActions } from "../api/index";
 import { removeFromCart } from "../../../stores/cartSlice";
 
 const ListCart = () => {
-  // const { removeFromCart } = useCartActions(); // use the custom hook
+  const { handleRemove } = useCartActions(); // use the custom hook
   const cartItems = useSelector((state: RootState) => state.cart.items);
-  
-  // const [cartItems, setCartItems] = useState(cartItems);
 
   const handleRemoveItem = (itemId: string) => {
-    const updatedCart = cartItems.filter((item) => item.productId !== itemId);
-    // setCartItems(updatedCart);
-    removeFromCart(itemId)
+    handleRemove(itemId);
   };
-
-  // const handleIncrement = (itemId: number) => {
-  //   const updatedCart = cartItems.map((item) =>
-  //     item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
-  //   );
-  //   setCartItems(updatedCart);
-  // };
-
-  // const handleDecrement = (itemId: number) => {
-  //   const updatedCart = cartItems.map((item) =>
-  //     item.id === itemId && item.quantity > 1
-  //       ? { ...item, quantity: item.quantity - 1 }
-  //       : item
-  //   );
-  //   setCartItems(updatedCart);
-  // };
 
   if (cartItems.length === 0) {
     return <p>There are 0 products in the cart.</p>;
@@ -64,21 +41,13 @@ const ListCart = () => {
                 <DetailsContainer>
                   <StyledTitle>{item.imageUrl}</StyledTitle>
                   <StyledText>{item.description}</StyledText>
-                  <QuantityContainer>
-                    {/* <QuantityButton onClick={() => handleDecrement(item.productId)}>
-                      -
-                    </QuantityButton> */}
-                    {/* <span>{item.quantity}</span> */}
-                    {/* <QuantityButton onClick={() => handleIncrement(item.productId)}>
-                      +
-                    </QuantityButton> */}
-                  </QuantityContainer>
+                  <QuantityContainer></QuantityContainer>
                 </DetailsContainer>
               </ImageContainer>
               <PriceContainer>
                 <StyledFontAwesomeIcon
                   icon={faTrashAlt}
-                  onClick={() =>handleRemoveItem(item.productId)}
+                  onClick={() => handleRemoveItem(item.productId)}
                 />
                 <StyledText>${item.price}</StyledText>
               </PriceContainer>
@@ -89,6 +58,5 @@ const ListCart = () => {
     </StyledRow>
   );
 };
-//hehe
 
 export default ListCart;
