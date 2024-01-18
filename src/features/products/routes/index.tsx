@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useParams, useRoutes } from "react-router-dom";
 import ListProduct from "../components/listProduct"; // Adjust the path as necessary
@@ -34,9 +33,11 @@ export const ProductsLayout = () => {
 
     const fetchProduct = async (productId: string) => {
       try {
-        const response = await fetch(`https://your-api-url/products/${productId}`);
+        const response = await fetch(
+          `https://your-api-url/products/${productId}`
+        );
         const product = await response.json();
-        console.log(`Fetched product with id: ${productId}`, product)
+        console.log(`Fetched product with id: ${productId}`, product);
 
         setSelectedProduct({
           productId: product.id,
