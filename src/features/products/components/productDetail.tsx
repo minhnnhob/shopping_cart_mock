@@ -36,7 +36,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
 
   return (
     <ProductDetailContainer>
-      <ProductImageStyled src="https://picsum.photos/200/300" alt={product.productName} />
+      <ProductImageStyled src={product.imageUrl} />
       <ProductInfoStyled >
         <ProductTitleStyled>{product.productName}</ProductTitleStyled>
         <ProductDescriptionStyled >{product.description}</ProductDescriptionStyled>
