@@ -1,4 +1,4 @@
-// ProductsLayout.js
+
 import React, { useState, useEffect } from "react";
 import { useParams, useRoutes } from "react-router-dom";
 import ListProduct from "../components/listProduct"; // Adjust the path as necessary

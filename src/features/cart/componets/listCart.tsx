@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
+// import { useState } from "react";
+// import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import {
   StyledRow,
   StyledCol,
@@ -11,9 +11,9 @@ import {
   StyledTitle,
   StyledText,
   QuantityContainer,
-  QuantityButton,
+  // QuantityButton,
   PriceContainer,
-  StyledFontAwesomeIcon,
+  // StyledFontAwesomeIcon,
 } from "./Cart.styled";
 
 import { useSelector } from "react-redux";
