@@ -1,5 +1,5 @@
-// import { useState } from "react";
-// import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
+import { useState } from "react";
+import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import {
   StyledRow,
   StyledCol,
@@ -13,19 +13,25 @@ import {
   QuantityContainer,
   // QuantityButton,
   PriceContainer,
+  StyledFontAwesomeIcon,
   // StyledFontAwesomeIcon,
 } from "./Cart.styled";
 
 import { useSelector } from "react-redux";
 import { RootState } from "../../../stores/store";
 import { useCartActions } from "../api/index";
+import { removeFromCart } from "../../../stores/cartSlice";
 
 const ListCart = () => {
-  const { handleRemove } = useCartActions(); // use the custom hook
+  // const { removeFromCart } = useCartActions(); // use the custom hook
   const cartItems = useSelector((state: RootState) => state.cart.items);
+  
+  // const [cartItems, setCartItems] = useState(cartItems);
 
   const handleRemoveItem = (itemId: string) => {
-    handleRemove(itemId);
+    const updatedCart = cartItems.filter((item) => item.productId !== itemId);
+    // setCartItems(updatedCart);
+    removeFromCart(itemId)
   };
 
   // const handleIncrement = (itemId: number) => {
@@ -70,10 +76,10 @@ const ListCart = () => {
                 </DetailsContainer>
               </ImageContainer>
               <PriceContainer>
-                {/* <StyledFontAwesomeIcon
+                <StyledFontAwesomeIcon
                   icon={faTrashAlt}
-                  onClick={() => handleRemoveItem(item.id)}
-                /> */}
+                  onClick={() =>handleRemoveItem(item.productId)}
+                />
                 <StyledText>${item.price}</StyledText>
               </PriceContainer>
             </StyledCardBody>
