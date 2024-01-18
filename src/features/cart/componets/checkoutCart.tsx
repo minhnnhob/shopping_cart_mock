@@ -15,9 +15,17 @@ import { RootState } from "../../../stores/store";
 
 const CheckoutCart: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
+  const calculateSubtotal = () => {
+    let subtotal = cartItems.reduce((total, item) => total + Number(item.price), 0);
+    return subtotal.toFixed(1); 
+  };
+  
   const calculateTotal = () => {
-    const total = cartItems.reduce((total, item) => total + Number(item.price), 0);
-    return total.toFixed(1); // This will round the total to 1 decimal place
+    let total = Number(calculateSubtotal());
+    if (cartItems.length > 0) {
+      total += 10; 
+    }
+    return total.toFixed(1); 
   };
   return (
     <StyledContainer>
@@ -26,13 +34,22 @@ const CheckoutCart: React.FC = () => {
 
         <SubtotalContainer>
           <SubtotalLeft>Subtotal: </SubtotalLeft>
-          <SubtotalRight>$0</SubtotalRight>
+          <SubtotalRight>${calculateSubtotal()}</SubtotalRight>
         </SubtotalContainer>
 
         <ShoppingCostContainer>
-          <p className="subleft">Shopping Cost: </p>
-          <p className="subright">$0</p>
-        </ShoppingCostContainer>
+  {cartItems.length > 0 ? (
+    <>
+      <p className="subleft">Shipping Cost: </p>
+      <p className="subright">$10</p>
+    </>
+  ) : (
+    <>
+      <p className="subleft">Shipping Cost: </p>
+      <p className="subright">$0</p>
+    </>
+  )}
+</ShoppingCostContainer>
 
         <TotalContainer>
           <TotalHeading>Total: </TotalHeading>
