@@ -62,7 +62,7 @@ const ListCart = () => {
                     {/* <QuantityButton onClick={() => handleDecrement(item.productId)}>
                       -
                     </QuantityButton> */}
-                    <span>{item.quantity}</span>
+                    {/* <span>{item.quantity}</span> */}
                     {/* <QuantityButton onClick={() => handleIncrement(item.productId)}>
                       +
                     </QuantityButton> */}
