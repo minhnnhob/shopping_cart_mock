@@ -1,10 +1,10 @@
-export interface Product {
+export interface IProduct {
     productId: string;
     productName: string;
     description: string;
-    price: string;
+    price: number;
     imageUrl: string;
     // quantity: number; 
   }
   
-  export default Product;
+  export default IProduct;

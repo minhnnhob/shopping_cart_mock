@@ -5,7 +5,7 @@ import { RootState } from '../../stores/store';
 
 
 const NavBar: React.FC = () => {
-  const cartItemCount = useSelector((state: RootState) => state.cart.items.length);
+  const cartItemCount = useSelector((state: RootState) => state.cart.item.length);
   const style = ({ isActive }: { isActive: boolean }) => {
     return {
       fontSize: "1.2rem",

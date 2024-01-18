@@ -1,8 +1,8 @@
 import axios from "axios";
-import { Product } from "../interface/interface";
+import { IProduct } from "../interface/interface";
 
-export const GetAllProduct = async (): Promise<Product[]> => {
+export const GetAllProduct = async (): Promise<IProduct[]> => {
   const respone = await axios.get("http://localhost:4000/api/products");
-  const data: Product[] = respone.data;
+  const data: IProduct[] = respone.data;
   return data;
 };

@@ -1,6 +1,5 @@
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import {
-  StyledRow,
   StyledCol,
   StyledCard,
   StyledCardBody,
@@ -12,54 +11,97 @@ import {
   QuantityContainer,
   PriceContainer,
   StyledFontAwesomeIcon,
-  StyledPlus,
-  StyledSpace,
 } from "./Cart.styled";
 
-import { useSelector } from "react-redux";
-import { RootState } from "../../../stores/store";
-import { useCartActions } from "../api/index";
+import { useDispatch, useSelector } from "react-redux";
+
+import { QuantityButtonStyled } from "../../products/components/product.Styled";
+import React, { useState } from "react";
+
 //import { removeFromCart } from "../../../stores/cartSlice";
+import { useEffect } from "react";
+import { removeFromCart } from "../../../stores/cartSlice";
+import { changeProductQuantity } from "../../../stores/cartSlice";
 
-const ListCart = () => {
-  const { handleRemove } = useCartActions(); // use the custom hook
-  const cartItems = useSelector((state: RootState) => state.cart.items);
+interface CartItemProps {
+  cartItem: {
+    quantity: number;
+    product: {
+      productId: string;
+      imageUrl: string;
+      productName: string;
+      description: string;
+      price: number;
+    };
+  };
+  decrement: (id: string) => void;
+  increment: (id: string) => void;
+}
 
-  const handleRemoveItem = (itemId: string) => {
-    handleRemove(itemId);
+const ListCart: React.FC<CartItemProps> = ({
+  cartItem,
+  decrement,
+  increment,
+}) => {
+  const dispatch = useDispatch();
+  const [count, setCount] = useState<number>(cartItem.quantity);
+
+  useEffect(() => {
+    dispatch(changeProductQuantity({ ...cartItem, quantity: count }));
+  }, [count, cartItem, dispatch]);
+
+  const handleIncrement = () => {
+    setCount(count + 1);
+    increment(cartItem.product.productId);
   };
 
-  if (cartItems.length === 0) {
-    return <p>There are 0 products in the cart.</p>;
-  }
+  const handleDecrement = () => {
+    if (count > 1) {
+      setCount(count - 1);
+      decrement(cartItem.product.productId);
+    } else {
+      const confirmed = window.confirm("you sure?");
+      if (confirmed) {
+        dispatch(removeFromCart(cartItem.product.productId));
+      }
+    }
+  };
+
+  const handleRemove = () => {
+    dispatch(removeFromCart(cartItem.product.productId));
+  };
+  const totalPrice = (count * cartItem.product.price).toFixed(2);
   return (
-    <StyledRow>
-      {cartItems.map((item) => (
-        <StyledCol key={item.productId} md={4}>
-          <StyledCard>
-            <StyledCardBody>
-              <ImageContainer>
-                <StyledImg src={item.imageUrl} />
-                <DetailsContainer>
-                  <StyledTitle>{item.productName}</StyledTitle>
-                  <StyledText>{item.description}</StyledText>
-
-                  <QuantityContainer></QuantityContainer>
-
-                </DetailsContainer>
-              </ImageContainer>
-              <PriceContainer>
-                <StyledFontAwesomeIcon
-                  icon={faTrashAlt}
-                  onClick={() => handleRemoveItem(item.productId)}
-                />
-                <StyledText>${item.price}</StyledText>
-              </PriceContainer>
-            </StyledCardBody>
-          </StyledCard>
-        </StyledCol>
-      ))}
-    </StyledRow>
+    <StyledCol key={cartItem.product.productId} md={4}>
+      <StyledCard>
+        <StyledCardBody>
+          <ImageContainer>
+            <StyledImg src={cartItem.product.imageUrl} />
+            <DetailsContainer>
+              <StyledTitle>{cartItem.product.productName}</StyledTitle>
+              <StyledText>{cartItem.product.description}</StyledText>
+              <div>
+                <QuantityButtonStyled onClick={handleDecrement}>
+                  -
+                </QuantityButtonStyled>
+                <span style={{ margin: "0 10px" }}>{count}</span>
+                <QuantityButtonStyled onClick={handleIncrement}>
+                  +
+                </QuantityButtonStyled>
+              </div>
+              <QuantityContainer></QuantityContainer>
+            </DetailsContainer>
+          </ImageContainer>
+          <PriceContainer>
+            <StyledFontAwesomeIcon
+              icon={faTrashAlt}
+              onClick={() => handleRemove()}
+            />
+            <StyledText>${totalPrice}</StyledText>
+          </PriceContainer>
+        </StyledCardBody>
+      </StyledCard>
+    </StyledCol>
   );
 };
 

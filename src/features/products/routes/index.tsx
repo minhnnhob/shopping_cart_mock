@@ -4,7 +4,7 @@ import { useParams, useRoutes } from "react-router-dom";
 import ListProduct from "../components/listProduct"; // Adjust the path as necessary
 import ProductDetail from "../components/productDetail"; // Adjust the path as necessary
 import { GetAllProduct } from "../api/getAllProduct"; // Adjust the path as necessary
-import { Product } from "../interface/interface"; // Adjust the path as necessary
+import { IProduct } from "../interface/interface"; // Adjust the path as necessary
 import {
   ProductsLayoutContainerStyled,
   ProductDetailContainerStyled,
@@ -12,8 +12,8 @@ import {
 } from "../components/product.Styled";
 
 export const ProductsLayout = () => {
-  const [product, setProducts] = useState<Product[]>([]);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [product, setProducts] = useState<IProduct[]>([]);
+  const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +24,7 @@ export const ProductsLayout = () => {
     fetchData();
   }, []);
 
-  const onProductSelect = (product: Product) => {
+  const onProductSelect = (product: IProduct) => {
     console.log(`Selected product: ${product.productName}`);
     setSelectedProduct(product);
   };
@@ -68,7 +68,7 @@ export const ProductsLayout = () => {
               productId: "1",
               productName: "Product 1",
               description: "This is product 1",
-              price: "100",
+              price: 100,
               imageUrl: "https://picsum.photos/200/300",
             }}
           />
