@@ -1,7 +1,7 @@
 // ListProduct.js
 import React, { useEffect, useState } from 'react';
 import { GetAllProduct } from '../api/getAllProduct';
-import { Product } from '../interface/interface';
+import { IProduct } from '../interface/interface';
 import {
   ProductContainer,
   ProductImage,
@@ -14,11 +14,11 @@ import {
 } from './product.Styled';
 
 interface ListProductProps {
-  onProductSelect: (product: Product) => void;
+  onProductSelect: (product: IProduct) => void;
 }
 
 export const ListProduct = ({ onProductSelect }: ListProductProps) => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<IProduct[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {

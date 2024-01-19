@@ -14,18 +14,22 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../stores/store";
 
 const CheckoutCart: React.FC = () => {
-  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const cartItems = useSelector((state: RootState) => state.cart.item);
   const calculateSubtotal = () => {
-    let subtotal = cartItems.reduce((total, item) => total + Number(item.price), 0);
-    return subtotal.toFixed(1); 
+    let subtotal = cartItems.reduce((total, item) => total + item.quantity, 0);
+    return subtotal.toFixed(0);
   };
+
   const calculateTotal = () => {
     let total = Number(calculateSubtotal());
     if (cartItems.length > 0) {
-      total += 10; 
+      cartItems.forEach(
+        (item) => (total = item.product.price * item.quantity + 10)
+      );
     }
-    return total.toFixed(0);
+    return total.toFixed(2);
   };
+
   return (
     <StyledContainer>
       <StyledOrderContainer>
@@ -33,22 +37,22 @@ const CheckoutCart: React.FC = () => {
 
         <SubtotalContainer>
           <SubtotalLeft>Subtotal: </SubtotalLeft>
-          <SubtotalRight>${calculateSubtotal()}</SubtotalRight>
+          <SubtotalRight>{calculateSubtotal()}</SubtotalRight>
         </SubtotalContainer>
 
         <ShoppingCostContainer>
-  {cartItems.length > 0 ? (
-    <>
-      <p className="subleft">Shipping Cost: </p>
-      <p className="subright">$10</p>
-    </>
-  ) : (
-    <>
-      <p className="subleft">Shipping Cost: </p>
-      <p className="subright">$0</p>
-    </>
-  )}
-</ShoppingCostContainer>
+          {cartItems.length > 0 ? (
+            <>
+              <p className="subleft">Shipping Cost: </p>
+              <p className="subright">$10</p>
+            </>
+          ) : (
+            <>
+              <p className="subleft">Shipping Cost: </p>
+              <p className="subright">$0</p>
+            </>
+          )}
+        </ShoppingCostContainer>
 
         <TotalContainer>
           <TotalHeading>Total: </TotalHeading>

@@ -23,20 +23,9 @@ export const ProductContainer = styled.div`
 `;
 
 export const ProductImage = styled.img`
-  width: 120px;
-  height: 80px;
-  margin-right: 10px;
-
-  @media (max-width: ${mobileBreakpoint}) {
-    width: 100%;
-    height: auto;
-    margin-top: 20px;
-  }
-  @media (max-width: ${tabletBreakpoint}) {
-    width: 100%;
-    height: auto;
-    margin-top: 20px;
-  }
+  width: 6rem;
+  height: 6rem;
+  margin-right: 1.5rem;
 `;
 
 export const ProductInfoContainer = styled.div`

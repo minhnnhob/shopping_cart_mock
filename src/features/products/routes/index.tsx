@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect } from "react";
 import { useParams, useRoutes } from "react-router-dom";
 import ListProduct from "../components/listProduct"; // Adjust the path as necessary
 import ProductDetail from "../components/productDetail"; // Adjust the path as necessary
 import { GetAllProduct } from "../api/getAllProduct"; // Adjust the path as necessary
-import { Product } from "../interface/interface"; // Adjust the path as necessary
+import { IProduct } from "../interface/interface"; // Adjust the path as necessary
 import {
   ProductsLayoutContainerStyled,
   ProductDetailContainerStyled,
@@ -12,8 +11,8 @@ import {
 } from "../components/product.Styled";
 
 export const ProductsLayout = () => {
-  const [product, setProducts] = useState<Product[]>([]);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [product, setProducts] = useState<IProduct[]>([]);
+  const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +23,7 @@ export const ProductsLayout = () => {
     fetchData();
   }, []);
 
-  const onProductSelect = (product: Product) => {
+  const onProductSelect = (product: IProduct) => {
     console.log(`Selected product: ${product.productName}`);
     setSelectedProduct(product);
   };
@@ -34,9 +33,11 @@ export const ProductsLayout = () => {
 
     const fetchProduct = async (productId: string) => {
       try {
-        const response = await fetch(`https://your-api-url/products/${productId}`);
+        const response = await fetch(
+          `https://your-api-url/products/${productId}`
+        );
         const product = await response.json();
-        console.log(`Fetched product with id: ${productId}`, product)
+        console.log(`Fetched product with id: ${productId}`, product);
 
         setSelectedProduct({
           productId: product.id,
