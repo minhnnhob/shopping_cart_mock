@@ -188,7 +188,7 @@ export const StyledShoppingCartRow = styled(Row)`
 export const StyledShoppingCartContainer = styled(Container)`
   max-width: 1200px;
   margin: auto;
-  height: 100%;
+  height: 42.3rem;
 
   @media (max-width: ${tabletBreakpoint}) {
     padding: 0 10px;
