@@ -33,7 +33,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
   const handleAddToCart = () => {
     console.log(`Added ${quantity} ${product.productName}(s) to the cart.`);
     dispatch(addToCart({ ...product, productId: product.productId, imageUrl: product.imageUrl}));
-    alert (`Added  ${product.productName}(s) to the cart.`);
+    // alert (`Added  ${product.productName}(s) to the cart.`);
   };
 
   
