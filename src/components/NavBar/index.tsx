@@ -14,7 +14,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Dropdown } from "react-bootstrap";
 
 const NavBar: React.FC = () => {
-  const cartItemCount = useSelector((state: RootState) => state.cart.items.length);
+  const cartItemCount = useSelector((state: RootState) => state.cart.item.length);
 
   return (
     <Container>
