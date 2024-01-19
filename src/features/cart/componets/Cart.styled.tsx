@@ -77,8 +77,8 @@ export const ImageContainer = styled.div`
 `;
 
 export const StyledImg = styled(Card.Img)`
-  height: 100px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
 `;
 
 export const DetailsContainer = styled.div`
@@ -93,6 +93,7 @@ export const StyledTitle = styled(Card.Title)`
 
 export const StyledText = styled(Card.Text)`
   margin-bottom: 1rem;
+ 
 `;
 
 export const QuantityContainer = styled.div`
@@ -107,7 +108,11 @@ export const QuantityButton = styled.button`
 `;
 
 export const PriceContainer = styled.div`
-  margin-left: auto;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: .5rem 0 ;
 `;
 
 export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`

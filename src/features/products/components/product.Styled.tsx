@@ -12,9 +12,9 @@ export const ProductContainer = styled.div`
 `;
 
 export const ProductImage = styled.img`
-  width: 120px;
-  height: 80px;
-  margin-right: 10px;
+  width: 6rem;
+  height: 6rem;
+  margin-right: 1.5rem;
 `;
 
 export const ProductInfoContainer = styled.div`
