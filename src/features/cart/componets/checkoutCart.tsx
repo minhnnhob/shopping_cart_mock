@@ -16,8 +16,10 @@ import { RootState } from "../../../stores/store";
 const CheckoutCart: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.item);
   const calculateSubtotal = () => {
-    let subtotal = cartItems.reduce((total, item) => total + item.quantity, 0);
-    return subtotal.toFixed(0);
+    let subtotal = cartItems.map(
+      (item) => item.product.price * item.quantity + 10
+    );
+    return subtotal;
   };
 
   const calculateTotal = () => {
@@ -29,6 +31,9 @@ const CheckoutCart: React.FC = () => {
     }
     return total.toFixed(2);
   };
+
+
+
 
   return (
     <StyledContainer>

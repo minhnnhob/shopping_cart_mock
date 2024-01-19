@@ -65,9 +65,9 @@ export const ProductDetailContainer = styled.div`
 `;
 
 export const ProductImageStyled = styled.img`
-  width: 35%;
+  width: 50%;
   height: 60%;
-  margin-top: 50px;
+  margin-top: 40px;
 
 `;
 

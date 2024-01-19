@@ -44,7 +44,7 @@ export const ProductsLayout = () => {
           productName: product.name,
           description: product.description,
           price: product.price,
-          imageUrl: "https://picsum.photos/200/300",
+          imageUrl: product.imageUrl,
         });
       } catch (error) {
         console.error(`Failed to fetch product with id: ${productId}`, error);
@@ -64,15 +64,7 @@ export const ProductsLayout = () => {
         {selectedProduct ? (
           <ProductDetail product={selectedProduct} />
         ) : (
-          <ProductDetail
-            product={{
-              productId: "1",
-              productName: "Product 1",
-              description: "This is product 1",
-              price: 100,
-              imageUrl: "https://picsum.photos/200/300",
-            }}
-          />
+          <p>No product selected</p>
         )}
       </ProductDetailContainerStyled>
     );

@@ -11,12 +11,17 @@ import {
   StyledShoppingCartContentWrapper,
   StyledRow,
 } from "../componets/Cart.styled";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../stores/store";
+import axios from "axios";
+import { clearCart } from "../../../stores/cartSlice";
+import { useNavigate } from "react-router";
 
 export const ShoppingCart: React.FC = () => {
   const cart = useSelector((state: RootState) => state.cart.item);
   const [cartS, setcartS] = useState(0);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const calculateSubtotal = () => {
     let total = 0;
@@ -29,14 +34,6 @@ export const ShoppingCart: React.FC = () => {
   useEffect(() => {
     calculateSubtotal();
   }, [cart]);
-
-  const payload = {
-    paySuccess: true,
-    productsInOrder: cart.map((cartItem) => ({
-      productId: cartItem.product.productId,
-      quantity: cartItem.quantity,
-    })),
-  };
 
   return (
     <>
@@ -60,6 +57,7 @@ export const ShoppingCart: React.FC = () => {
 
               <div>
                 <CheckoutCart />
+
                 <ButtonCart />
               </div>
             </StyledShoppingCartContentWrapper>

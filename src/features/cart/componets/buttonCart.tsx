@@ -1,17 +1,39 @@
+import { useDispatch, useSelector } from "react-redux";
 import { CheckoutButton, ContinueShoppingButton } from "./Cart.styled";
+import { RootState } from "../../../stores/store";
+import axios from "axios";
+import { clearCart } from "../../../stores/cartSlice";
+import { useNavigate } from "react-router";
 
 const ButtonCart = () => {
-  const handleCheckout = () => {
-    const shouldCheckout = window.confirm(
-      "Do you want to proceed with the checkout?"
-    );
+  const navigate = useNavigate();
 
-    if (shouldCheckout) {
-      // Add your logic for handling checkout here
-      console.log("Checking out...");
-    } else {
-      console.log("Checkout canceled");
-    }
+  const cart = useSelector((state: RootState) => state.cart.item);
+  const dispatch = useDispatch();
+
+  const payload = {
+    paySuccess: true,
+    productsInOrder: cart.map((cartItem) => ({
+      productId: cartItem.product.productId,
+      quantity: cartItem.quantity,
+    })),
+  };
+
+  const handleCheckout = () => {
+    axios
+      .post("http://localhost:4000/api/checkout", payload)
+      .then((res) => {
+        console.log(res.data);
+        const userConfirmation = window.confirm("Do you want to purchase?");
+        if (userConfirmation) {
+          alert("Thank you for Purchase!!!");
+        }
+        dispatch(clearCart());
+        navigate("/products");
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
   };
 
   const handleContinueShopping = () => {
