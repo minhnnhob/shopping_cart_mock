@@ -71,6 +71,15 @@ const ListCart: React.FC<CartItemProps> = ({
     dispatch(removeFromCart(cartItem.product.productId));
   };
   const totalPrice = (count * cartItem.product.price).toFixed(2);
+
+  // The code is from a file named listCart.tsx in a React and TypeScript project, defining a ListCart component.
+  // The ListCart component takes several props: cartItem (an object containing product details and quantity), decrement (a function to decrease the quantity of a product), and increment (a function to increase the quantity of a product).
+  // The useDispatch hook from react-redux is used to get the dispatch function from the Redux store.
+  // A state variable count is created using useState, initialized to the quantity of the cartItem.
+  // The useEffect hook is used to dispatch the changeProductQuantity action whenever count changes. This action updates the quantity of the cartItem in the Redux store.
+  // Three functions are defined: handleIncrement, handleDecrement, and handleRemove. handleIncrement increases the count and calls increment. handleDecrement decreases the count (if it's greater than 1) and calls decrement, or removes the item from the cart if count is 1 and the user confirms. handleRemove removes the item from the cart.
+  // The total price for the cartItem is calculated by multiplying count by the product's price.
+
   return (
     <StyledCol key={cartItem.product.productId} md={4}>
       <StyledCard>

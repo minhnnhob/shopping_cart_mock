@@ -49,7 +49,14 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
   if (!product) {
     return <div>No Product Selected</div>;
   }
-
+  // The code is from a file named productDetail.tsx in a React and TypeScript project, defining a ProductDetail component.
+  // The ProductDetail component takes a single prop: product of type IProduct.
+  // Two state variables are created using useState: quantity (initialized to 1) and totalPrice (initialized to the product's price).
+  // The useDispatch hook from react-redux is used to get the dispatch function from the Redux store.
+  // A reference preProduct is created using useRef to hold the previous product.
+  // Two useEffect hooks are used: one to reset the quantity and total price when a new product is selected, and another to update the total price when the quantity or product changes.
+  // A handleAddToCart function is defined to dispatch the addToCart action with the current product and quantity.
+  // If no product is provided, the component renders a div with the text "No Product Selected".
   return (
     <ProductDetailContainer>
       <ProductImageStyled src={product.imageUrl} />

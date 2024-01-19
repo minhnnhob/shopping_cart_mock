@@ -30,6 +30,12 @@ export const ShoppingCart: React.FC = () => {
     calculateSubtotal();
   }, [cart]);
 
+  // The code is from a file named index.tsx in a React and TypeScript project, defining a ShoppingCart component.
+  // The useSelector hook from react-redux is used to access the cart state from the Redux store.
+  // A state variable cartS is created using useState, initialized to 0, which is used to store the subtotal of the cart.
+  // A function calculateSubtotal is defined to calculate the subtotal of the cart by iterating over each item in the cart, multiplying the quantity of each item by its price, and adding these values together. The result is then set as the new value of cartS.
+  // The useEffect hook is used to call calculateSubtotal whenever the cart state changes.
+
   const payload = {
     paySuccess: true,
     productsInOrder: cart.map((cartItem) => ({

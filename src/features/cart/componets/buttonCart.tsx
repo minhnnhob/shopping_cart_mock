@@ -1,5 +1,5 @@
 import { CheckoutButton, ContinueShoppingButton } from "./Cart.styled";
-
+import { useNavigate } from "react-router-dom";
 const ButtonCart = () => {
   const handleCheckout = () => {
     const shouldCheckout = window.confirm(
@@ -13,10 +13,11 @@ const ButtonCart = () => {
       console.log("Checkout canceled");
     }
   };
-
+  const navigate = useNavigate();
   const handleContinueShopping = () => {
     // Add your logic for continuing shopping here
     console.log("Continuing shopping...");
+    navigate("/products"); // Navigate to the products page
   };
 
   return (

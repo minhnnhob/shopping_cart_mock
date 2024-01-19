@@ -28,7 +28,12 @@ export const ListProduct = ({ onProductSelect }: ListProductProps) => {
 
     fetchData();
   }, []);
-
+  // The code is from a file named listProduct.tsx in a React and TypeScript project, defining a ListProduct component.
+  // The ListProduct component takes a single prop: onProductSelect, which is a function that takes a product of type IProduct as an argument.
+  // A state variable products is created using useState, initialized as an empty array of IProduct.
+  // The useEffect hook is used to fetch product data when the component mounts. Inside this hook, an asynchronous function fetchData is defined and immediately invoked.
+  // The fetchData function calls GetAllProduct (presumably a function that fetches product data from an API), and the result is used to update the products state.
+  
   return (
     <div>
       {products.map((product, index) => (
