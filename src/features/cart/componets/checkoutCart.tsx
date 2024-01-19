@@ -15,20 +15,15 @@ import { RootState } from "../../../stores/store";
 
 const CheckoutCart: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.item);
-  const calculateSubtotal = () => {
-    let subtotal = cartItems.map(
-      (item) => item.product.price * item.quantity + 10
-    );
-    return subtotal;
+   const calculateSubtotal = () => {
+    let subtotal = cartItems.reduce((total, item) => total + item.product.price * item.quantity, 0);
+    return subtotal.toFixed(2);
   };
 
   const calculateTotal = () => {
     let total = Number(calculateSubtotal());
-    if (cartItems.length > 0) {
-      cartItems.forEach(
-        (item) => (total = item.product.price * item.quantity + 10)
-      );
-    }
+    let shippingCost = cartItems.length > 0 ? 10 : 0;
+    total += shippingCost;
     return total.toFixed(2);
   };
 

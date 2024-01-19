@@ -35,10 +35,11 @@ const ButtonCart = () => {
         console.log(err.response.data);
       });
   };
-
+  
   const handleContinueShopping = () => {
     // Add your logic for continuing shopping here
     console.log("Continuing shopping...");
+    navigate("/products"); // Navigate to the products page
   };
 
   return (
